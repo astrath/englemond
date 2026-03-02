@@ -1,87 +1,11 @@
-# WordPress Core Files (uncomment if you want to ignore core)
-# /wp-admin/
-# /wp-includes/
-# /wp-*.php
-# /xmlrpc.php
-# /license.txt
-# /readme.html
+# Ignore everything by default
+/*
 
-# WordPress Configuration
-wp-config.php
-wp-config-local.php
-.htaccess
+# But keep the root directory structure
+!/.gitignore
+!/.git/
 
-# WordPress Content
-wp-content/uploads/
-wp-content/upgrade/
-wp-content/backup-db/
-wp-content/advanced-cache.php
-wp-content/wp-cache-config.php
-wp-content/cache/
-wp-content/blogs.dir/
-wp-content/upgrade/
-wp-content/backups/
-wp-content/debug.log
+# Ignore all themes except englemond
+!/wp-content/themes/englemond/
 
-# WordPress Debug
-*.log
-debug.log
-error_log
-
-# WordPress Plugins (uncomment if you want to ignore plugins)
-# /wp-content/plugins/
-
-# WordPress Themes (uncomment if you want to ignore themes)
-# /wp-content/themes/
-
-# Composer
-/vendor/
-composer.lock
-
-# Node.js
-node_modules/
-npm-debug.log
-yarn-error.log
-package-lock.json
-yarn.lock
-
-
-# IDE and Editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
-Thumbs.db
-
-# Environment files
-.env
-.env.local
-.env.*.local
-
-# Temporary files
-*.tmp
-*.temp
-*.bak
-*.backup
-
-# OS files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Desktop.ini
-
-# Database
-*.sql
-*.sql.gz
-*.sqlite
-
-# Archive files
-*.zip
-*.tar
-*.tar.gz
-*.rar
+!/wp-content/plugins/englemond-products/
