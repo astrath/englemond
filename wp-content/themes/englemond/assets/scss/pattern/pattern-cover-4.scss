@@ -1,0 +1,12 @@
+.pattern-cover-4{
+    .wp-block-cover__image-background{
+        left: 33%;
+    }
+    .wp-block-cover__inner-container{
+        padding-top: 100px;;
+    }
+    min-height: 500px;
+    p{
+        font-size: clamp(1.5rem, 3vw, 2.25rem);
+    }
+}

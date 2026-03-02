@@ -4,8 +4,15 @@
 # But keep the root directory structure
 !/.gitignore
 !/.git/
-
-# Ignore all themes except englemond
+!/wp-content/
+/wp-content/*
+!/wp-content/themes/
+/wp-content/themes/*
 !/wp-content/themes/englemond/
 
+
+!/wp-content/plugins/
+/wp-content/plugins/*
 !/wp-content/plugins/englemond-products/
+
+node_modules/

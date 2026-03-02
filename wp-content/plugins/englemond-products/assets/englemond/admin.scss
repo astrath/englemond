@@ -1,0 +1,214 @@
+.column-thumbnail {
+    img{
+        display: block;
+        width: 4rem;
+        height: 4rem;
+        aspect-ratio: 1/1;
+        object-fit: contain;
+    }
+}
+
+.englemond-detail-list {
+    cursor: pointer;
+    
+    &:hover {
+        background-color: #f0f0f1;
+    }
+}
+
+.englemond-price-cell {
+    cursor: pointer;
+    
+    &:hover {
+        background-color: #f0f0f1;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+}
+
+// Modal styles
+.englemond-detail-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.englemond-detail-modal {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.englemond-detail-modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    h2 {
+        margin: 0;
+        font-size: 18px;
+    }
+}
+
+.englemond-detail-modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 1;
+    
+    &:hover {
+        color: #000;
+    }
+}
+
+.englemond-detail-modal-body {
+    padding: 20px;
+    flex: 1;
+}
+
+.englemond-detail-field {
+    margin-bottom: 15px;
+    
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
+    
+    input,
+    textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        font-family: inherit;
+    }
+    
+    textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+}
+
+.englemond-detail-modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    
+    .button {
+        min-width: 80px;
+    }
+}
+
+// Price modal styles (reuse detail modal styles)
+.englemond-price-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.englemond-price-modal {
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.englemond-price-modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    h2 {
+        margin: 0;
+        font-size: 18px;
+    }
+}
+
+.englemond-price-modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 1;
+    
+    &:hover {
+        color: #000;
+    }
+}
+
+.englemond-price-modal-body {
+    padding: 20px;
+    flex: 1;
+}
+
+.englemond-price-field {
+    margin-bottom: 15px;
+    
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
+    
+    input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+}
+
+.englemond-price-modal-footer {
+    padding: 15px 20px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    
+    .button {
+        min-width: 80px;
+    }
+}
