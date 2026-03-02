@@ -1,0 +1,17 @@
+{
+    "name": "astrath/englemond-migration",
+    "autoload": {
+        "psr-4": {
+            "Astrath\\EnglemondMigration\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Aymen Jerbi",
+            "email": "aymen.jerbi@nearteam.fr"
+        }
+    ],
+    "require": {
+        "symfony/var-dumper": "^7.4"
+    }
+}

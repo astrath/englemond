@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "englemond/contact-form",
+	"title": "Englemond Contact Form",
+	"category": "englemond",
+	"icon": "email",
+	"description": "A contact form block for Englemond",
+	"keywords": ["contact", "form", "englemond"],
+	"textdomain": "englemond-products",
+	"editorScript": "file:./build/editor.js",
+	"editorStyle": ["dashicons"],
+	"viewScript": "file:./build/view.js",
+	"style": ["file:./build/view.css"],
+	"render": "file:./render.php",
+	"attributes": {
+		"display": {
+			"type": "string",
+			"default": "block",
+			"enum": ["block", "popup"]
+		},
+		"buttonText": {
+			"type": "string",
+			"default": "Contact Us"
+		},
+		"contactEmail": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": true
+	}
+}

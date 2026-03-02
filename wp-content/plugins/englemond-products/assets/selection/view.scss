@@ -1,0 +1,97 @@
+.wp-block-englemond-selection {
+    --control-size: 1.5rem;
+    --aspect-ratio: 1/1;
+	&__carousel {
+        gap: 1rem;
+		display: flex;
+		flex-direction: row;
+		scroll-snap-type: x mandatory;
+		scroll-behavior: smooth;
+		-webkit-overflow-scrolling: touch;
+        &.align-left {
+            flex-direction: row-reverse;
+        }
+    }
+    &__carousel-viewport{   
+        width: 100%;
+        overflow:hidden;
+    }
+    &__carousel-inner {
+        display: flex;
+        flex-direction: row;
+        transition: margin-left 0.3s ease-in-out;
+        > * {
+            width: 100%;
+        }
+    }
+    img{
+        display: block;
+        height: auto;
+        width: 100%;
+        aspect-ratio: var(--aspect-ratio, 1/1);
+        object-fit: contain;
+    }
+    &__carousel-controls {
+        display: flex;
+        gap: .5rem;
+        flex-direction: row;
+        align-items: center;
+        > * {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: var(--control-size);
+            height: var(--control-size);
+            
+            &:disabled{
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+        }
+    }
+    &__carousel-control-prev {
+        &:before{
+            border-top: 3px solid currentColor;
+            border-right: 3px solid currentColor;
+            content: '';
+            display: block;
+            width: 50%;
+            height: 50%;
+            transform: rotate(225deg);
+        }
+    }
+    &__carousel-control-next {
+        &:before{
+            border-top: 3px solid currentColor;
+            border-right: 3px solid currentColor;
+            content: '';
+            display: block;
+            width: 50%;
+            height: 50%;
+            transform: rotate(45deg);
+        }
+    }
+    &__side {
+        width: calc(100% - 600px);
+        flex-shrink: 0;
+        a {
+            display: block;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            
+            &.active {
+                font-weight: bold;
+                opacity: 1;
+            }
+            
+            &:not(.active) {
+                display: none;
+            }
+            
+        }
+    }
+    
+}

@@ -1,0 +1,124 @@
+.is-style-default.wp-block-englemond-selection{
+    position: relative;
+    .wp-block-englemond-selection{
+        &__item-title{
+            display: none;
+        }
+        
+        &__carousel{
+            --control-size: 1.5rem;;
+            background: linear-gradient(90deg, rgba(244,240,240,1) 0%, rgba(244,240,240,1) 86%, rgba(255,255,255,1) 86%, rgba(255,255,255,1) 100%); 
+            position: relative;
+            padding-top: 5rem;
+            padding: 3rem 3rem 0 0;
+            &:after{
+                content: '';
+                position: absolute;
+                top: 3rem;
+                right: 2rem;
+                left: 30%;
+                bottom: -2rem;
+                background-color: #F9F9F9;
+                z-index: 1;
+            }
+        }
+        &__side{
+            position: relative;
+            z-index: 2;
+            width: 30%;
+            flex-shrink: 0;
+            padding: clamp(1.5px, 5vw, 3rem);
+            h5{
+                font-size: var(--wp--preset--font-size--large);
+            }
+        }
+        
+        &__carousel-viewport{
+            margin: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        &__carousel-controls{
+            padding: .5rem;
+            height: 3rem;
+            position: absolute;
+            top: 0;
+            right: 0;
+            justify-content: flex-end;
+        }
+        &__carousel-item{
+            width: 100%;
+            padding: .5rem;
+        }
+    }
+    &.has-align-left{
+        .wp-block-englemond-selection__carousel{
+            flex-direction: row;
+        }
+    }
+    &.has-align-right{
+        .wp-block-englemond-selection__carousel{
+            background: linear-gradient(-90deg, rgba(244,240,240,1) 0%, rgba(244,240,240,1) 86%, rgba(255,255,255,1) 86%, rgba(255,255,255,1) 100%); 
+            flex-direction: row-reverse;
+            &:after{
+                right: 30%;
+                left: 2rem;
+
+
+            }
+            &-controls{
+                right: auto;
+                left: 0;
+            }
+        }
+    }
+    @media (max-width: 768px) {
+        .wp-block-englemond-selection__carousel{
+            display: block;
+            padding: 0;
+            background: none !important;
+            &:after{
+                display: none;
+            }
+        }
+        .wp-block-englemond-selection__side{
+            padding: 2rem;
+            width: calc(100% - 4rem);
+            text-align: center;
+            background: #F2F2F2;
+        }
+        .wp-block-englemond-selection__carousel-viewport{
+            width: 100%;
+            margin: 0rem ;
+            background: #F9F9F9;
+        }
+        .wp-block-englemond-selection__carousel-controls{
+            position: initial;
+            --control-size: 1rem;
+            padding: 0;
+            height: 0;
+            >  *{
+                width: calc(var(--control-size) * 2);
+                height: calc(var(--control-size) * 2);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #F2F2F2;
+                z-index: 100;
+                position:absolute;
+                bottom: 4rem;
+
+            }
+        }
+        .wp-block-englemond-selection__carousel-control-next{
+            left: auto;
+            
+            right: 1rem;
+        }
+        .wp-block-englemond-selection__carousel-control-prev{
+            left: 1rem;
+            right: auto;
+        }
+        
+    }
+}
