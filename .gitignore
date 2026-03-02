@@ -15,5 +15,5 @@
 /wp-content/plugins/*
 !/wp-content/plugins/englemond-products/
 !/wp-content/plugins/url-replacer/
-
+!/wp-content/plugins/maintenance-mode/
 node_modules/
