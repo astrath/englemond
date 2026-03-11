@@ -1,0 +1,12 @@
+.pattern-cover-8{
+    color: var(--wp--preset--color--contrast);
+    .wp-block-cover__inner-container{
+        display: flex;
+        align-items: center;
+    }
+    p {
+        font-family: 'Raleway';
+        font-weight: 300;
+        font-size: clamp(2rem, 4vw, 3rem);
+    }
+}

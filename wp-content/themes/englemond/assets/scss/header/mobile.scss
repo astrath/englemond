@@ -1,8 +1,8 @@
-@media (max-width: 780px){
+@use '../variables' as *;
+@media (max-width: $mobile-max){
     .is-style-nav-header{
         padding-left: 0 !important;
         padding-right: 0 !important;
-    
         ul,
         li,
         .wp-block-navigation__submenu-container,

@@ -1,0 +1,39 @@
+.pattern-carousel-3{
+    .wp-block-image{
+        padding-left: 360px; 
+        img{
+            width: 100%;
+        }
+    }
+    .wp-block-englemond-selection{
+        width: 600px;
+        margin-top: -250px;;
+    }
+    > .wp-block-group{
+        gap: 4rem;
+        align-items: start;
+         .wp-block-group{
+            padding-top: 3rem;
+        }
+    }
+    p{
+
+        font-family: Raleway;
+        font-weight: 300;
+        line-height: 1.16;
+        font-size: clamp(1.5rem, 4vw, 3rem);
+    }
+    &:nth-child(even){
+        .wp-block-image{
+            padding-left: 0;
+            padding-right: 360px;
+        }
+        > .wp-block-group{
+            flex-direction: row-reverse;
+        }
+        .wp-block-englemond-selection__carousel-viewport{
+            background: linear-gradient(-90deg, #FFF 0%, #FFF 50%, #F2F2F2 50%, #F2F2F2 100%);
+        }
+    }
+    
+}

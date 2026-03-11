@@ -44,7 +44,7 @@
 					"slug": "accent-5"
 				},
 				{
-					"color": "color-mix(in srgb, currentColor 20%, transparent)",
+					"color": "#26262610",
 					"name": "Accent 6",
 					"slug": "accent-6"
 				}
@@ -52,7 +52,7 @@
 		},
 		"layout": {
 			"contentSize": "920px",
-			"wideSize": "1340px"
+			"wideSize": "1440px"
 		},
 		"spacing": {
 			"defaultSpacingSizes": false,
@@ -589,7 +589,7 @@
 				},
 				":focus": {
 					"outline": {
-						"color": "var:preset|color|accent-4",
+						"color": "#F2F2F2",
 						"offset": "2px"
 					}
 				},
@@ -681,21 +681,6 @@
 			"area": "footer",
 			"name": "footer",
 			"title": "Footer"
-		},
-		{
-			"area": "footer",
-			"name": "footer-columns",
-			"title": "Footer Columns"
-		},
-		{
-			"area": "footer",
-			"name": "footer-newsletter",
-			"title": "Footer Newsletter"
-		},
-		{
-			"area": "uncategorized",
-			"name": "sidebar",
-			"title": "Sidebar"
 		}
 	],
 	"customTemplates": [

@@ -1,112 +1,24 @@
 <?php
-/**
- * Englemond functions and definitions.
- *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
- *
- * @package WordPress
- * @subpackage Englemond
- * @since Englemond 1.0
- */
-
 // Disables comments on the site.
 require_once get_template_directory() . '/includes/disable-comments.php';
 
 // Disables the draft metabox in the admin dashboard.
 require_once get_template_directory() . '/includes/customize-wp.php';
 
-// Adds theme support for post formats.
-if ( ! function_exists( 'englemond_post_format_setup' ) ) :
-	/**
-	 * Adds theme support for post formats.
-	 *
-	 * @since Englemond 1.0
-	 *
-	 * @return void
-	 */
-	function englemond_post_format_setup() {
-		add_theme_support( 'post-formats', array( 'aside', 'audio', 'chat', 'gallery', 'image', 'link', 'quote', 'status', 'video' ) );
-	}
-endif;
-add_action( 'after_setup_theme', 'englemond_post_format_setup' );
-
-// Enqueues editor-style.css in the editors.
-if ( ! function_exists( 'englemond_editor_style' ) ) :
-	/**
-	 * Enqueues editor-style.css in the editors.
-	 *
-	 * @since Englemond 1.0
-	 *
-	 * @return void
-	 */
-	function englemond_editor_style() {
-		add_editor_style( 'assets/css/editor-style.css' );
-		add_editor_style( 'build/englemond.css' );
-		add_editor_style( 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap' );
-	}
-endif;
-add_action( 'after_setup_theme', 'englemond_editor_style' );
+add_action('after_setup_theme', function(){
+	add_editor_style( 'build/englemond.css' );
+	add_editor_style( 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap' );
+});
 
 // Enqueues the theme stylesheet on the front.
-if ( ! function_exists( 'englemond_enqueue_styles' ) ) :
-	/**
-	 * Enqueues the theme stylesheet on the front.
-	 *
-	 * @since Englemond 1.0
-	 *
-	 * @return void
-	 */
-	function englemond_enqueue_styles() {
-		$suffix = SCRIPT_DEBUG ? '' : '.min';
-		$src    = 'style' . $suffix . '.css';
-
-		wp_enqueue_style(
-			'englemond-style',
-			get_parent_theme_file_uri( $src ),
-			array(),
-			wp_get_theme()->get( 'Version' )
-		);
-		wp_enqueue_style(
-			'englemond-style-build',
-			get_template_directory_uri() . '/build/englemond.css',
-			array(),
-			wp_get_theme()->get( 'Version' )
-		);
-		
-		wp_style_add_data(
-			'englemond-style',
-			'path',
-			get_parent_theme_file_path( $src )
-		);
-
-		wp_enqueue_script(
-			'englemond-script',
-			get_template_directory_uri() . '/build/englemond.js',
-			array('jquery'),
-			wp_get_theme()->get( 'Version' ),
-			true
-		);
-		wp_enqueue_style(
-			'englemond-fonts',
-			'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap',
-			array(),
-			wp_get_theme()->get( 'Version' )
-		);
-
-	}
-endif;
-add_action( 'wp_enqueue_scripts', 'englemond_enqueue_styles' );
+add_action('wp_enqueue_scripts', function(){
+	wp_enqueue_style('englemond-fonts', 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap', [], wp_get_theme()->get( 'Version' ));
+	wp_enqueue_style('englemond-style', get_template_directory_uri() . '/build/englemond.css', [], wp_get_theme()->get( 'Version' ));
+	wp_enqueue_script('englemond-script', get_template_directory_uri() . '/build/englemond.js', ['jquery'], wp_get_theme()->get( 'Version' ), true);
+});
 
 // Registers custom block styles.
-if ( ! function_exists( 'englemond_block_styles' ) ) :
-	/**
-	 * Registers custom block styles.
-	 *
-	 * @since Englemond 1.0
-	 *
-	 * @return void
-	 */
-	function englemond_block_styles() {
+add_action('init', function(){
 		register_block_style(
 			'core/list',
 			array(
@@ -122,94 +34,25 @@ if ( ! function_exists( 'englemond_block_styles' ) ) :
 				}',
 			)
 		);
-	}
-endif;
-add_action( 'init', 'englemond_block_styles' );
+});
 
 // Registers pattern categories.
-if ( ! function_exists( 'englemond_pattern_categories' ) ) :
-	/**
-	 * Registers pattern categories.
-	 *
-	 * @since Englemond 1.0
-	 *
-	 * @return void
-	 */
-	function englemond_pattern_categories() {
+add_action('init', function(){
+		register_block_pattern_category('englemond_content', [
+			'label'       => __( 'Content', 'englemond' ),
+			'description' => __( 'A collection of content layouts.', 'englemond' )
+		]);
+		register_block_pattern_category('englemond_section', [
+			'label'       => __( 'Sections', 'englemond' ),
+			'description' => __( 'A collection of section layouts.', 'englemond' )
+		]);
+		register_block_pattern_category('englemond_carousel', [
+			'label'       => __( 'Carousels', 'englemond' ),
+			'description' => __( 'A collection of carousel layouts.', 'englemond' )
+		]);
+});
 
-		register_block_pattern_category(
-			'englemond_page',
-			array(
-				'label'       => __( 'Pages', 'englemond' ),
-				'description' => __( 'A collection of full page layouts.', 'englemond' ),
-			)
-		);
-
-		register_block_pattern_category(
-			'englemond_post-format',
-			array(
-				'label'       => __( 'Post formats', 'englemond' ),
-				'description' => __( 'A collection of post format patterns.', 'englemond' ),
-			)
-		);
-	}
-endif;
-add_action( 'init', 'englemond_pattern_categories' );
-
-// Registers block binding sources.
-if ( ! function_exists( 'englemond_register_block_bindings' ) ) :
-	/**
-	 * Registers the post format block binding source.
-	 *
-	 * @since Englemond 1.0
-	 *
-	 * @return void
-	 */
-	function englemond_register_block_bindings() {
-		register_block_bindings_source('englemond/shop',[
-				'label'              => get_option('englemond_shop_phone'),
-				'get_value_callback' =>function($args) {
-					switch ($args['key']) {
-						case 'phone':
-							return 'tel:'.get_option('englemond_shop_phone');
-							break;
-						case 'orderButtonText':
-							return get_option('englemond_shop_order_button_text');
-							break;
-					}
-				},
-			]
-		);
-		register_block_bindings_source('englemond/order-text',[
-			'label'              => get_option('englemond_order_text'),
-			'get_value_callback' => function() {
-				return get_option('englemond_order_text');
-			}
-		]
-	);
-	}
-endif;
-add_action( 'init', 'englemond_register_block_bindings' );
-
-// Registers block binding callback function for the post format name.
-if ( ! function_exists( 'englemond_format_binding' ) ) :
-	/**
-	 * Callback function for the post format name block binding source.
-	 *
-	 * @since Englemond 1.0
-	 *
-	 * @return string|void Post format name, or nothing if the format is 'standard'.
-	 */
-	function englemond_format_phone_binding() {
-		return 'tel:'.get_option('englemond_shop_phone');
-	}
-
-endif;
-
-add_action('render_block_core/navigation-link', 'englemond_navigation_link_render_callback', 10, 4);
-function englemond_navigation_link_render_callback($block_content, $block, $parsed_block, $x=null) 
-{
-	
+add_action('render_block_core/navigation-link', function($block_content, $block, $parsed_block, $x=null){
 	$id = $block['attrs']['id']??null;
 	if (!$id){
 		return $block_content;
@@ -223,43 +66,48 @@ function englemond_navigation_link_render_callback($block_content, $block, $pars
 	$img  =sprintf('<img src="%s" alt="%s" class="wp-block-navigation-item__icon" /><p class="wp-block-navigation-item__description">%s</p><span class="wp-block-navigation-item__label">', $img, $block['attrs']['label']??null, $desc);
 	$block_content = str_replace('<span class="wp-block-navigation-item__label">', $img, $block_content);
 	return $block_content;
-}
+}, 10, 4);
 
-add_action('admin_enqueue_scripts', 'englemond_admin_enqueue_scripts');
-function englemond_admin_enqueue_scripts() {
+add_action('admin_enqueue_scripts', function(){
 	$current_screen = get_current_screen();
-	wp_enqueue_script(
-		'englemond-admin-script',
-		get_template_directory_uri() . '/build/englemond-admin.js',
-		array('wp-blocks', 'wp-i18n', 'wp-element', 'wp-data'),
-		wp_get_theme()->get( 'Version' ),
-		true
-	);
-	wp_localize_script(
-		'englemond-admin-script',
-		'SHOPDATA',
-		[
-			'phone' => get_option('englemond_shop_phone'),
-			'orderButtonText' => get_option('englemond_shop_order_button_text', 'commander au ...'),
-		]
-	);
-}
+	wp_enqueue_script('englemond-admin-script', get_template_directory_uri() . '/build/englemond-admin.js', ['wp-blocks', 'wp-i18n', 'wp-element', 'wp-data', 'wp-hooks', 'wp-components', 'wp-block-editor'], wp_get_theme()->get( 'Version' ), true);
+});
+
+// Replaces WordPress logo with Englemond logo on wp-login screen (uses Site Identity logo).
+add_action('login_enqueue_scripts', function () {
+	$custom_logo_id = get_theme_mod('custom_logo');
+	if (!$custom_logo_id) {
+		return;
+	}
+	$logo_url = wp_get_attachment_image_url($custom_logo_id, 'medium');
+	if (!$logo_url) {
+		return;
+	}
+	$logo_url = esc_url($logo_url);
+	?>
+	<style type="text/css">
+		body.login h1 a {
+			background-color: #FFF;
+			background-image: url(<?php echo $logo_url; ?>);
+			background-size: contain;
+			background-position: center center;
+			width: 100%;
+			height: 80px;
+		}
+	</style>
+	<?php
+});
+add_filter('login_headerurl', function () {
+	return home_url();
+});
+add_filter('login_headertext', function () {
+	return get_bloginfo('name') . ' - ' . get_bloginfo('description');
+});
 
 // Removes Posts from admin menu.
-if ( ! function_exists( 'englemond_remove_posts_menu' ) ) :
-	/**
-	 * Removes the Posts menu item from the WordPress admin menu.
-	 *
-	 * @since Englemond 1.0
-	 *
-	 * @return void
-	 */
-	function englemond_remove_posts_menu() {
-		remove_menu_page( 'edit.php' );
-	}
-endif;
-add_action( 'admin_menu', 'englemond_remove_posts_menu' );
-
+add_action('admin_menu', function(){
+	remove_menu_page( 'edit.php' );
+});
 
 add_action('wp_footerz', function(){
 	?>

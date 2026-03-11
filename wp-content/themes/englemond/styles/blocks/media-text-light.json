@@ -1,0 +1,12 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+	"version": 3,
+	"title": "Light",
+	"slug": "light",
+	"blockTypes": ["core/media-text"],
+	"styles": {
+		"color": {
+			"text": "var:preset|color|contrast"
+		}
+	}
+}

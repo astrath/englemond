@@ -1,4 +1,6 @@
 
+import './englemond-modifs';
+/*
 const {registerBlockBindingsSource} = wp.blocks
 const { __ } = wp.i18n;
 wp.domReady(function(){
@@ -40,3 +42,5 @@ wp.domReady(function(){
     },
 });
 });
+
+*/

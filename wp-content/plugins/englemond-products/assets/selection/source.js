@@ -5,6 +5,7 @@ import { InspectorControls } from '@wordpress/block-editor';
 import { Button, Placeholder, PanelBody, SearchControl, SelectControl, Modal, Spinner, __experimentalNumberControl as NumberControl, IconButton } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { useState, useCallback, useEffect } from '@wordpress/element';
+import { useSelect } from '@wordpress/data';
 
 export function SourceControlsPanel
 ({
@@ -15,6 +16,9 @@ export function SourceControlsPanel
     const onChangeProperty = (property) => (value) => {
         const newSource = {...(attributes.source   || {})}
         newSource[property] = value;
+        if (source.type === 'term') {
+            delete newSource.ids;
+        }
         setAttributes({ source: newSource });
     };
 	return (
@@ -76,7 +80,7 @@ const ProductCategorySelector = ({ value, onChange }) => {
             })
             .forEach(cat => {
                 options.push({
-                    label: prefix + (prefix ? ' ' : '') + cat.name,
+                    label: prefix + (prefix ? ' ' : '') + cat.name + ' (' + cat.count + ')',
                     value: cat.id
                 });
                 // Recursively add children
@@ -105,12 +109,11 @@ const ProductCategorySelector = ({ value, onChange }) => {
  * Product selection panel component
  */
 export function ProductSelectionPanel({
-    sourceType,
     selectedProducts,
+    isEditable,
     onAddProduct,
     onRemoveProduct,
 }) {
-    const isEditable = sourceType !== 'term';
     
     
 	return (
@@ -201,7 +204,7 @@ const ProductItem = ({ product, onRemove }) => {
         <div style={{ padding: '8px', border: '1px solid #ddd', marginBottom: '4px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <img src={product.thumbnail} alt={product.title} style={{ width: '40px', height: '40px', marginRight: '10px' }} />
             <span style={{width: '100%'}}>{product.title?.rendered || product.title}</span>
-            <IconButton icon="minus" onClick={onRemove} />
+            {onRemove && <IconButton icon="minus" onClick={onRemove} />}
         </div>
     );
 };

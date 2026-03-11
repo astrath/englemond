@@ -24,6 +24,12 @@ $wrapper_attributes = get_block_wrapper_attributes([
 ]);
 ?>
 <div <?= $wrapper_attributes; ?>>
+	<?php if ($view['showHeader']??false):	?>
+		<div class="wp-block-englemond-selection__header">
+			<h3 class="wp-block-englemond-selection__title"><?= $attributes['title']; ?></h3>
+			<p class="wp-block-englemond-selection__description"><?= $attributes['description']; ?></p>
+		</div>
+	<?php endif; ?>
 	<div class="wp-block-englemond-selection__carousel">
 		<div class="wp-block-englemond-selection__carousel-viewport">
             <div class="wp-block-englemond-selection__carousel-inner" style="width: <?= $width; ?>%;">
@@ -45,9 +51,8 @@ $wrapper_attributes = get_block_wrapper_attributes([
 				<span class="screen-reader-text"><?= esc_html__('Next', 'englemond-products'); ?></span>
 			</button>
 		</div>
-	<?php if (empty($view['hideText']) || !$view['hideText'] ): ?>
+	<?php if ($view['showSidebar']??false): ?>
 			<div class="wp-block-englemond-selection__side">
-				<h3><?= $attributes['title']; ?></h3>
 				<h5>
 					<?php foreach ($selected_products as $index => $product) : ?>
 						<a class="<?= $index === 0 ? 'active' : ''; ?>" data-index="<?= $index; ?>" href="<?= get_permalink($product->ID); ?>">

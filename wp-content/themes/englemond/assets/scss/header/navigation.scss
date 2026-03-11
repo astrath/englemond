@@ -1,4 +1,5 @@
 @use './mobile.scss';
+@use '../variables' as *;
 .is-style-nav-header{
     a:hover{
         text-decoration: none;
@@ -7,15 +8,34 @@
         outline: none !important;
     }
 }
-@media (min-width: 780px){
+@media (min-width: $tablet-min){
     .is-style-nav-header{
         max-width: 90vw;
         position: relative;
-        
+        .submenu-button{
+            grid-column: 1 / -1;
+            order: -1;
+            a{
+                border: 1px solid;
+                padding: .5rem 1rem !important;
+                border-radius:.5rem;
+                flex-grow: 0 !important;
+                display: inline-flex !important;
+                align-items: center;
+                gap: 10px;
+                width: auto;
+            }
+            a:after{
+                content: "→";
+            }
+        }
         .wp-block-navigation__submenu-container{
+            z-index: 1000 !important;
             width: 100% !important;
-            left: 0 !important;
-            right: 0 !important;
+            max-width: 1040px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            right: auto !important;
         } 
         > li {
             position: initial !important;
@@ -31,7 +51,11 @@
         > ul {
             padding: 20px;
             display: grid !important;
-            grid-template-columns: repeat(6, 1fr) !important;
+            grid-template-columns: repeat(4, 1fr) !important;
+
+            @media (min-width: $desktop-min){
+                grid-template-columns: repeat(6, 1fr) !important;
+            }
             gap: 10px !important;
             align-items: stretch !important;
             .has-image{
@@ -42,12 +66,19 @@
                 gap: 10px !important;
                 img{
                     width: 80px;
-                    height: 80px;
+                    height: auto;
+                    max-width: 100%;
+                    aspect-ratio: 1/1;
                     object-fit: contain;
                 }
                 text-align: center !important;
             }
             
+        }
+    }
+    .is-style-submenu-grid-4{
+        > ul {
+            grid-template-columns: repeat(4, 1fr) !important;
         }
     }
 
@@ -78,6 +109,10 @@
                 }
             }
             > div{
+                display: none;
+                @media (min-width: $desktop-min){
+                    display: flex;
+                }
                 width: 300px;
                 flex-shrink: 0;
                 flex-direction: column;

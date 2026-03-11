@@ -1,0 +1,23 @@
+.pattern-section-17{
+    .wp-block-columns{
+        position: relative;
+        &::before{
+            content: '';
+            position: absolute;
+            top: 30%;
+            left: 0;
+            width: 100%;
+            bottom: 0;
+            background-color: rgba(222, 222, 222, 0.3);
+        }
+        .wp-block-column{
+            position: relative;
+            z-index: 1;
+            padding: 2rem clamp(2rem, 3vw, 4rem);
+            p , h2,h3,h4{
+                margin-left: 0 !important;
+                max-width: 400px;
+            }
+        }
+    }
+}

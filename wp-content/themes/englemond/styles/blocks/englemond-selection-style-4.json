@@ -1,0 +1,14 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+	"version": 3,
+	"slug": "selection-4",
+	"title": "Style 4",
+	"blockTypes": [
+		"englemond/selection"
+	],
+    "styles": {
+        "color": {
+            "text": "var:preset|color|contrast"
+        }
+    }
+}

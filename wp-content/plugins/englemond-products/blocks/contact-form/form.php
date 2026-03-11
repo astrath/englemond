@@ -62,6 +62,7 @@ if (!defined('ABSPATH')) {
 			id="contact-message" 
 			name="message" 
 			class="wp-block-englemond-contact-form__textarea" 
+			maxlength="4000"
 			required
 		></textarea>
 	</div>

@@ -1,0 +1,26 @@
+@use '../variables' as *;
+
+.pattern-cover-7{
+    min-height: clamp(400px, 70vh, 600px);
+    @media (min-width: $tablet-min) {
+        .wp-block-cover__background,
+        .wp-block-cover__image-background{
+            top: 0;
+            left: 25%;
+            right: 0;
+            bottom: 100px;
+            height: calc(100% - 100px);
+            width: 75%;
+        }
+    }
+    @media (max-width: $mobile-max) {
+        .wp-block-image{
+            display: none;
+        }
+        .wp-block-group{
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

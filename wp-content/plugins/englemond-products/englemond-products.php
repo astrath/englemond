@@ -19,6 +19,7 @@ require_once __DIR__ . '/includes/model-joaillery.php';
 require_once __DIR__ . '/includes/settings.php';
 require_once __DIR__ . '/includes/mailer.php';
 require_once __DIR__ . '/ajax.php';
+require_once __DIR__ . '/includes/contact.php';
 
 add_action('admin_enqueue_scripts', 'englemond_products_admin_enqueue_scripts');
 function englemond_products_admin_enqueue_scripts() {
@@ -46,6 +47,7 @@ function englemond_products_register_blocks() {
 		'gallery',
 		'selection',
 		'contact-form',
+		'browser',
 	];
 	
 	foreach ($blocks as $block_name) {

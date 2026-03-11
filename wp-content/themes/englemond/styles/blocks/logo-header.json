@@ -1,0 +1,14 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+	"version": 3,
+	"title": "Header Logo",
+	"slug": "logo-header",
+	"blockTypes": ["core/site-logo"],
+	"styles": {
+        "elements": {
+            "img": {
+                "height": "111px"
+            }
+        }
+	}
+}

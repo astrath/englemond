@@ -12,6 +12,8 @@ module.exports = {
 		'blocks/selection/view': './assets/selection/view.js',
 		'blocks/contact-form/editor': './assets/contact-form/editor.js',
 		'blocks/contact-form/view': './assets/contact-form/view.js',
+		'blocks/browser/editor': './assets/browser/editor.js',
+		'blocks/browser/view': './assets/browser/view.js',
 	},
 	output: {
 		path: path.resolve(__dirname),

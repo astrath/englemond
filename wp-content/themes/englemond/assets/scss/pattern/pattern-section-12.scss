@@ -1,0 +1,10 @@
+@use '../variables' as *;
+.pattern-section-12 {
+    background:#FFFFFF url(../scss/img/nc.svg)  left top no-repeat;
+    @media (min-width: $desktop-min){
+        .wp-block-media-text, .wp-block-columns{
+            margin-top: calc(-1 * clamp(50px, 10vw, 150px));
+        }
+    }
+}
+

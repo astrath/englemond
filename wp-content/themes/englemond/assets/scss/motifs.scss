@@ -1,0 +1,39 @@
+.has-bg-motif-1{
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background:#FFFFFF url(../scss/img/bg-house.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.has-bg-motif-2{
+    background:#FFFFFF url(../scss/img/nc.svg)  left top no-repeat;
+}
+
+.has-bg-motif-3{
+    position: relative;
+    padding: 2rem;
+    &:before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0%;
+        bottom: 20%;
+        right: 20%;
+        background-color: #F2F2F2;
+        z-index: -1;
+    }
+}
+
+.has-bg-motif-4{
+    background-image: url(../scss/img/motif-4.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.has-bg-motif-5{
+    background-image: url(../scss/img/motif-5.svg);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}

@@ -5,6 +5,9 @@
 
 add_action('admin_menu', 'englemond_shop_settings_menu');
 add_action('admin_init', 'englemond_shop_settings_init');
+add_action( 'init', 'englemond_register_block_bindings' );
+
+
 
 function englemond_shop_settings_menu() {
 	add_options_page(
@@ -61,6 +64,8 @@ function englemond_shop_settings_init() {
 		'englemond-shop-settings',
 		'englemond_shop_settings_section'
 	);
+
+
 }
 
 function englemond_shop_settings_sanitize($input) {
@@ -154,4 +159,28 @@ function englemond_shop_settings_page() {
 		</form>
 	</div>
 	<?php
+}
+
+
+function englemond_register_block_bindings() {
+	register_block_bindings_source('englemond/shop',[
+			'label'              => get_option('englemond_shop_phone'),
+			'get_value_callback' =>function($args) {
+				switch ($args['key']) {
+					case 'phone':
+						return 'tel:'.get_option('englemond_shop_phone');
+						break;
+					case 'orderButtonText':
+						return get_option('englemond_shop_order_button_text');
+						break;
+				}
+			},
+		]
+	);
+	register_block_bindings_source('englemond/order-text',[
+		'label'              => get_option('englemond_order_text'),
+		'get_value_callback' => function() {
+			return get_option('englemond_order_text');
+		}
+	]);
 }

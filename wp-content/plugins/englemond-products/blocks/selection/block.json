@@ -27,6 +27,10 @@
 			"type": "string",
 			"default": ""
 		},
+		"description":{
+			"type": "string",
+			"default": ""
+		},
 		"view": {
 			"type": "object",
 			"default": {

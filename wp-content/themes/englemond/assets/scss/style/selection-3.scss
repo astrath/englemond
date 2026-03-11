@@ -1,0 +1,33 @@
+.is-style-selection-3.wp-block-englemond-selection{
+    .wp-block-englemond-selection{
+        &__item{
+            border: 1rem solid #FFF;
+            padding:1rem;
+            background: #F2F2F2;
+            &-link{
+                background: #FFF;
+                display: block;
+            }
+            &-title{
+                display: none;
+            }
+        }
+        &__carousel{
+            padding-top: 1.5rem;
+            position: relative;
+        }
+        &__carousel-controls{
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 100;
+        }
+    }
+    &.has-align-right {
+        .wp-block-englemond-selection__carousel-controls{
+            right: auto;
+            left: 0;
+        }
+    }
+
+}

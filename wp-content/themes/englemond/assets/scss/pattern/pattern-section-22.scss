@@ -1,0 +1,32 @@
+.pattern-section-22{
+    min-height: 600px;
+    .wp-block-cover__image-background{
+        left: 300px;
+    }
+    .wp-block-cover__inner-container{
+        display: flex;
+        width: 100% !important;
+        align-items: center;
+        padding: 0 !important;
+        margin: 0 !important;
+        justify-content: space-between;
+        
+    }
+    .wp-block-image{
+        width: 270px;
+    }
+    .wp-block-group{
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        align-self: center;
+        width: 500px;
+    }
+    .wp-block-image{
+        width: 270px;
+    }
+    
+    p{
+        line-height: 1.15;
+        font-size: clamp(1.5rem, 3vw, 2.25rem);
+    }
+}

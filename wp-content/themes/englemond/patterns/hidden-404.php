@@ -1,12 +1,8 @@
 <?php
 /**
  * Title: 404
- * Slug: twentytwentyfive/hidden-404
+ * Slug: englemond/hidden-404
  * Inserter: no
- *
- * @package WordPress
- * @subpackage Twenty_Twenty_Five
- * @since Twenty Twenty-Five 1.0
  */
 
 ?>

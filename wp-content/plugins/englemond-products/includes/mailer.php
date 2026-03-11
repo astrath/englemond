@@ -25,9 +25,9 @@ function englemond_contact_form_submit() {
 	$name = isset($_POST['name']) ? sanitize_text_field($_POST['name']) : '';
 	$email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
 	$subject = isset($_POST['subject']) ? sanitize_text_field($_POST['subject']) : '';
-	$message = isset($_POST['message']) ? sanitize_textarea_field($_POST['message']) : '';
+	$message = isset($_POST['message']) ? substr(sanitize_textarea_field($_POST['message']), 0, 4000) : '';
+	$message = nl2br(strip_tags($message));
 	$contact_email = isset($_POST['contact_email']) ? sanitize_email($_POST['contact_email']) : '';
-
 	// Validate required fields
 	if (empty($name) || empty($email) || empty($subject) || empty($message)) {
 		wp_send_json_error([
@@ -36,6 +36,8 @@ function englemond_contact_form_submit() {
 		return;
 	}
 
+	
+
 	// Validate email format
 	if (!is_email($email)) {
 		wp_send_json_error([
@@ -43,6 +45,31 @@ function englemond_contact_form_submit() {
 		]);
 		return;
 	}
+
+	if ($msg = englemond_is_spam($email)) {
+		$error_message = __('Too many requests. Please try again later. Last message was sent at %s', 'englemond-products');
+		$error_message = sprintf($error_message, $msg['date']);
+		wp_send_json_error([
+			'message' => sprintf($error_message, $msg['date']),
+		]);
+		return;
+	}
+	
+	$messages = get_option('englemond_contact_messages', []);
+	$messages[] = $mail = [
+		'id'=>md5(date('Y-m-d H:i:s').$name.$email.$subject.$message),
+		'date'=>date('Y-m-d H:i:s'),
+		'ip'=>$_SERVER['REMOTE_ADDR'],
+		'user_agent'=>$_SERVER['HTTP_USER_AGENT'],
+		'name' => $name,
+		'status' => 'pending',
+		'email' => $email,
+		'subject' => $subject,
+		'message' => $message,
+	];
+	$messages = array_slice($messages, -100); // Keep only last 100 messages
+	update_option('englemond_contact_messages', $messages);
+	
 
 	// Get recipient email - use block-specific email or fall back to global settings
 	$recipient_email = '';
@@ -86,12 +113,14 @@ function englemond_contact_form_submit() {
 
 	// Send email
 	$mail_sent = wp_mail($recipient_email, $email_subject, $email_body, $headers);
-
+	
 	if ($mail_sent) {
+		englemond_contact_message_update_status($mail['id'], 'sent');
 		wp_send_json_success([
 			'message' => __('Thank you! Your message has been sent.', 'englemond-products'),
 		]);
 	} else {
+		englemond_contact_message_update_status($mail['id'], 'error');
 		wp_send_json_error([
 			'message' => __('Sorry, there was an error sending your message. Please try again later.', 'englemond-products'),
 		]);
@@ -111,3 +140,29 @@ function mailtrap($phpmailer) {
     $phpmailer->Password = 'db0aa85cf5a0f1';
   }
   add_action('phpmailer_init', 'mailtrap');
+
+function englemond_contact_message_update_status($id, $status) {
+	$messages = get_option('englemond_contact_messages', []);
+	foreach ($messages as $key => $message) {
+		if ($message['id'] == $id) {
+			$messages[$key]['status'] = $status;
+			break;
+		}
+	}
+	update_option('englemond_contact_messages', $messages);
+}
+
+function englemond_is_spam($email) {
+	$messages = get_option('englemond_contact_messages', []);
+	$now = new \DateTime();
+	$now->modify('-10 minutes');
+	$dateMin = $now->format('Y-m-d H:i:s');
+	foreach ($messages as $message) {
+		if ($message['email'] == $email) {
+			if ($message['date'] > $dateMin) {
+				return $message;
+			}
+		}
+	}
+	return false;
+}

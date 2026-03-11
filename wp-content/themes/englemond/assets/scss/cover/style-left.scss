@@ -1,21 +1,33 @@
+@use '../variables' as *;
+.pattern-cover-4,
 .wp-block-cover.is-style-left{
     color:var(--wp--preset--color--contrast);
     min-height: 430px;
     .wp-block-cover__inner-container{
-        display: grid;
+        @media (min-width: $desktop-min) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
         max-width: 1500px;
         width: 80%;
-        grid-template-columns: 1fr 1fr;
+        
         align-items: center;
         gap: 2rem;
         flex-direction: row;
         margin: auto !important;
+        
     }
     p{
-        font: 300 48px/56px 'Raleway';
+        font-family: 'Raleway';
+        font-weight: 300;
+        line-height: 1.15;
+        font-size: clamp(1.5rem, 3vw, 2.25rem);
 
     }
     h1{
-        font: normal 66px/88px 'Playfair Display'
+        font-family: 'Playfair Display';
+        font-weight: 400;
+        line-height: 1.15;
+        font-size: clamp(2.25rem, 5vw, 3.375rem);
     }
 }

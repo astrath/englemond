@@ -221,6 +221,7 @@ function englemond_products_admin_columns($columns) {
     $new_columns['cb'] = $columns['cb'];
     $new_columns['thumbnail'] = __('Thumbnail', 'englemond-products');
     $new_columns['title'] = $columns['title'];
+    $new_columns['category'] = __('Category', 'englemond-products');
     $new_columns['reference'] = __('Reference', 'englemond-products');
     $new_columns['price'] = __('Price', 'englemond-products');
     $new_columns['gallery'] = __('Gallery', 'englemond-products');
@@ -295,6 +296,14 @@ function englemond_products_admin_columns_content($column, $post_id) {
             }
             echo sprintf('<ul data-post-id="%s" class="englemond-detail-list">%s</ul>', $post_id, implode('', $details));
             break;
+        case 'category':
+            $html = [];
+            foreach (wp_get_post_terms($post_id, 'product_cat') as $category) {
+                $html[$category->term_id] = sprintf('<li>- <a href="%s">%s</a></li>', admin_url('edit.php?post_type=product&product_cat_filter=' . $category->term_id), esc_html($category->name));
+            }
+            ksort($html);
+            echo sprintf('<ul style="line-height: 1">%s</ul>', implode('', $html));
+            break;
     }
 }
 
@@ -367,4 +376,33 @@ function englemond_products_orderby_meta($query) {
         $query->set('meta_key', 'displayedPrice');
         $query->set('orderby', 'meta_value_num');
     }
+}
+
+
+function englemond_browser_get_category_tree() {
+    global $wpdb;
+    $sql = $wpdb->prepare("SELECT t.term_id, t.name, t.slug, tt.taxonomy FROM {$wpdb->term_taxonomy} tt join {$wpdb->terms} t on tt.term_id = t.term_id WHERE parent = 0 and taxonomy = 'product_cat'");
+    $root = $wpdb->get_results($sql);
+    $tree = [];
+    foreach ($root as $term) {
+        $term->children = [];
+        $tree[$term->term_id] = $term;
+    }
+    $rootIds = array_keys($tree);
+    $sql = $wpdb->prepare("SELECT t.term_id, tt.parent, t.name, t.slug, tt.taxonomy FROM {$wpdb->term_taxonomy} tt join {$wpdb->terms} t on tt.term_id = t.term_id WHERE parent in (" . implode(',', $rootIds) . ") and taxonomy = 'product_cat'");
+    $children = $wpdb->get_results($sql);
+    foreach ($children as $child) {
+        $tree[$child->parent]->children[] = $child;
+    }
+    foreach ($tree as $id =>$term) {
+        if (empty($term->children)) {
+            unset($tree[$id]);
+        }
+        else{
+            usort($term->children, function($a, $b) {
+                return $a->name <=> $b->name;
+            });
+        }
+    }
+    return $tree;
 }

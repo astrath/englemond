@@ -1,0 +1,9 @@
+$screen-desktop: 780px;
+$screen-tablet: 600px;
+.pattern-cover-5{
+    margin-bottom: 100px;
+    overflow: visible;
+    .wp-block-image{
+        transform: translate(0, 100px);
+    }
+}

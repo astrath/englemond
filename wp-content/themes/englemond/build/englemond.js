@@ -38,58 +38,6 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
 
 /***/ },
 
-/***/ "./assets/js/product-gallery.js"
-/*!**************************************!*\
-  !*** ./assets/js/product-gallery.js ***!
-  \**************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-
-(jquery__WEBPACK_IMPORTED_MODULE_0___default().fn).englemondProductGallery = function () {
-  const $gallery = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-  const html = $gallery.html();
-  const $images = $gallery.find('> .wp-block-image');
-  $gallery.html(`<div class="is-style-gallery-product__inner">
-        <div class="is-style-gallery-product__nav">
-            ${html}
-        </div>
-        <div class="is-style-gallery-product__frame">
-            <div class="is-style-gallery-product__viewport">
-                ${html}
-            </div>
-        </div>
-    </div>`);
-  const $previewFrame = $gallery.find('.is-style-gallery-product__viewport');
-  $previewFrame.css('width', `${$images.length * 100}%`);
-  $gallery.find('.is-style-gallery-product__nav > .wp-block-image').on('click', function () {
-    const index = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).index();
-    $previewFrame.css('margin-left', `-${index * 100}%`);
-  });
-  $gallery.find('.is-style-gallery-product__viewport > .wp-block-image').on('mousemove', function (event) {
-    const $el = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);
-    const rect = this.getBoundingClientRect();
-    const cursorRelativePos = {
-      x: (event.clientX - rect.left) / (rect.width + 1),
-      y: (event.clientY - rect.top) / (rect.height + 1)
-    };
-    const imgWidth = $el.width();
-    const imgHeight = $el.height();
-    $el.find('img').css('transform', 'scale(2)').css('transformOrigin', `${cursorRelativePos.x * 100}% ${cursorRelativePos.y * 100}%`);
-  }).on('mouseleave', function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find('img').css('transform', 'none');
-  });
-};
-jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
-  jquery__WEBPACK_IMPORTED_MODULE_0___default()('.is-style-gallery-product').each(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).englemondProductGallery();
-  });
-});
-
-/***/ },
-
 /***/ "./assets/scss/englemond.scss"
 /*!************************************!*\
   !*** ./assets/scss/englemond.scss ***!
@@ -195,8 +143,6 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scss_englemond_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/englemond.scss */ "./assets/scss/englemond.scss");
 /* harmony import */ var _menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./menu */ "./assets/js/menu.js");
-/* harmony import */ var _product_gallery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./product-gallery */ "./assets/js/product-gallery.js");
-
 
 
 })();

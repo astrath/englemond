@@ -9,6 +9,7 @@ $screen-tablet: 600px;
 @use 'media-text/couverture';
 @use 'header/logo'; 
 @use 'footer';
+@use 'motifs';
 @use 'header/navigation';
 @use 'gallery/product-gallery';
 @use 'cover/style-bottom';
@@ -17,10 +18,33 @@ $screen-tablet: 600px;
 
 @use 'general';
 
-@use 'carousel/default';
-@use 'carousel/style-1';
+@use 'style/selection-default';
+@use 'style/selection-1';
+@use 'style/selection-2';
+@use 'style/selection-3';
+@use 'style/selection-4';
+@use 'product/browser';
 
 @use 'pattern/pattern-cover-1';
 @use 'pattern/pattern-cover-2';
 @use 'pattern/pattern-cover-3';
 @use 'pattern/pattern-cover-4';
+@use 'pattern/pattern-cover-5';
+@use 'pattern/pattern-cover-6';
+@use 'pattern/pattern-cover-7';
+@use 'pattern/pattern-cover-8';
+@use 'pattern/pattern-cover-9';
+
+@use 'pattern/pattern-section-11';
+@use 'pattern/pattern-section-12';
+@use 'pattern/pattern-section-13';
+@use 'pattern/pattern-section-17';
+@use 'pattern/pattern-section-22';
+
+
+@use 'pattern/pattern-carousel-3';
+
+
+@use 'pattern/pattern-section-9';
+@use 'pattern/pattern-section-31';
+@use 'pattern/pattern-cta-2';

@@ -1,0 +1,22 @@
+
+.is-style-selection-4.wp-block-englemond-selection{
+    .wp-block-englemond-selection{
+        &__carousel{
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding-top: 2rem;
+            --control-size: 2rem;
+        }
+        &__carousel-controls{
+            order: -1;
+        }
+        &__carousel-viewport{
+            background: linear-gradient(90deg, #FFF 0%, #FFF 50%, #F2F2F2 50%, #F2F2F2 100%);
+        }
+        &__item{
+            padding: 1rem;
+        }
+        
+    }
+}

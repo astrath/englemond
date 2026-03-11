@@ -23,6 +23,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
@@ -50,6 +52,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 
 
 
+
 function SourceControlsPanel(_ref) {
   var _attributes$source, _attributes$source2, _attributes$source3;
   var attributes = _ref.attributes,
@@ -59,6 +62,9 @@ function SourceControlsPanel(_ref) {
     return function (value) {
       var newSource = _objectSpread({}, attributes.source || {});
       newSource[property] = value;
+      if (source.type === 'term') {
+        delete newSource.ids;
+      }
       setAttributes({
         source: newSource
       });
@@ -99,7 +105,7 @@ function SourceControlsPanel(_ref) {
 var ProductCategorySelector = function ProductCategorySelector(_ref2) {
   var value = _ref2.value,
     onChange = _ref2.onChange;
-  var categories = useSelect(function (select) {
+  var categories = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_4__.useSelect)(function (select) {
     return select('core').getEntityRecords('taxonomy', 'product_cat', {
       per_page: -1
     }) || [];
@@ -119,7 +125,7 @@ var ProductCategorySelector = function ProductCategorySelector(_ref2) {
       return catParent === parentValue;
     }).forEach(function (cat) {
       options.push({
-        label: prefix + (prefix ? ' ' : '') + cat.name,
+        label: prefix + (prefix ? ' ' : '') + cat.name + ' (' + cat.count + ')',
         value: cat.id
       });
       // Recursively add children
@@ -141,11 +147,10 @@ var ProductCategorySelector = function ProductCategorySelector(_ref2) {
  * Product selection panel component
  */
 function ProductSelectionPanel(_ref3) {
-  var sourceType = _ref3.sourceType,
-    selectedProducts = _ref3.selectedProducts,
+  var selectedProducts = _ref3.selectedProducts,
+    isEditable = _ref3.isEditable,
     onAddProduct = _ref3.onAddProduct,
     onRemoveProduct = _ref3.onRemoveProduct;
-  var isEditable = sourceType !== 'term';
   return /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Products', 'englemond-products')
   }, selectedProducts.length > 0 && /*#__PURE__*/React.createElement("div", {
@@ -310,7 +315,7 @@ var ProductItem = function ProductItem(_ref6) {
     style: {
       width: '100%'
     }
-  }, ((_product$title = product.title) === null || _product$title === void 0 ? void 0 : _product$title.rendered) || product.title), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.IconButton, {
+  }, ((_product$title = product.title) === null || _product$title === void 0 ? void 0 : _product$title.rendered) || product.title), onRemove && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.IconButton, {
     icon: "minus",
     onClick: onRemove
   }));
@@ -378,6 +383,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -390,6 +397,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+
 /**
  * Template component for rendering the selection block
  * Supports grid and carousel modes
@@ -398,9 +406,12 @@ function SelectionTemplate(_ref) {
   var _selectedProducts$act, _selectedProducts$act2;
   var attributes = _ref.attributes,
     selectedProducts = _ref.selectedProducts,
-    setAttributes = _ref.setAttributes;
+    setAttributes = _ref.setAttributes,
+    isSelected = _ref.isSelected,
+    isLoadingProducts = _ref.isLoadingProducts;
   var view = attributes.view,
-    source = attributes.source;
+    source = attributes.source,
+    title = attributes.title;
   var viewType = (view === null || view === void 0 ? void 0 : view.type) || 'carousel';
   var sourceType = (source === null || source === void 0 ? void 0 : source.type) || '';
   var columnsCount = (view === null || view === void 0 ? void 0 : view.columnsCount) || 3;
@@ -427,7 +438,33 @@ function SelectionTemplate(_ref) {
     width: selectedProducts.length * 100 / Math.max(columnsCount, 1) + '%',
     marginLeft: activeIndex * -100 / Math.max(columnsCount, 1) + '%'
   };
-  return /*#__PURE__*/React.createElement("div", blockProps, /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/React.createElement("div", blockProps, view.showHeader ? /*#__PURE__*/React.createElement("div", {
+    className: "wp-block-englemond-selection__header"
+  }, isSelected ? /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    className: "wp-block-englemond-selection__title",
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enter title', 'englemond-products'),
+    value: attributes.title,
+    onChange: function onChange(title) {
+      return setAttributes({
+        title: stripTags(title)
+      });
+    },
+    tagName: "h3"
+  }) : /*#__PURE__*/React.createElement("h3", {
+    className: "wp-block-englemond-selection__title"
+  }, attributes.title), isSelected ? /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
+    className: "wp-block-englemond-selection__description",
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enter description', 'englemond-products'),
+    value: attributes.description,
+    onChange: function onChange(description) {
+      return setAttributes({
+        description: stripTags(description)
+      });
+    },
+    tagName: "p"
+  }) : /*#__PURE__*/React.createElement("p", {
+    className: "wp-block-englemond-selection__description"
+  }, attributes.description)) : null, /*#__PURE__*/React.createElement("div", {
     className: "wp-block-englemond-selection__carousel " + (viewAlign === 'left' ? 'align-left' : '')
   }, /*#__PURE__*/React.createElement("div", {
     className: "wp-block-englemond-selection__carousel-viewport"
@@ -439,7 +476,7 @@ function SelectionTemplate(_ref) {
       product: product,
       className: "wp-block-englemond-selection__carousel-item"
     });
-  }))), view.hideText ? /*#__PURE__*/React.createElement("div", {
+  }))), /*#__PURE__*/React.createElement("div", {
     className: "wp-block-englemond-selection__carousel-controls"
   }, /*#__PURE__*/React.createElement("button", {
     onClick: function onClick() {
@@ -453,32 +490,9 @@ function SelectionTemplate(_ref) {
     },
     disabled: activeIndex >= selectedProducts - columnsCount.length,
     className: "wp-block-englemond-selection__carousel-control-next"
-  })) : /*#__PURE__*/React.createElement("div", {
-    className: "wp-block-englemond-selection__carousel-side"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "wp-block-englemond-selection__carousel-controls"
-  }, /*#__PURE__*/React.createElement("button", {
-    onClick: function onClick() {
-      return setActiveIndex(Math.max(0, activeIndex - 1));
-    },
-    disabled: activeIndex === 0,
-    className: "wp-block-englemond-selection__carousel-control-prev"
-  }), /*#__PURE__*/React.createElement("button", {
-    onClick: function onClick() {
-      return setActiveIndex(Math.min(selectedProducts.length - columnsCount, activeIndex + 1));
-    },
-    disabled: activeIndex >= selectedProducts - columnsCount.length,
-    className: "wp-block-englemond-selection__carousel-control-next"
-  })), /*#__PURE__*/React.createElement(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enter title', 'englemond-products'),
-    value: attributes.title,
-    onChange: function onChange(title) {
-      return setAttributes({
-        title: stripTags(title)
-      });
-    },
-    tagName: "h3"
-  }), /*#__PURE__*/React.createElement("h5", null, activeTitle))));
+  })), view.showSidebar ? /*#__PURE__*/React.createElement("div", {
+    className: "wp-block-englemond-selection__side"
+  }, /*#__PURE__*/React.createElement("h5", null, activeTitle), isLoadingProducts && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Spinner, null)) : null));
 }
 var Product = function Product(_ref2) {
   var product = _ref2.product,
@@ -527,6 +541,16 @@ module.exports = wp.blocks;
 (module) {
 
 module.exports = wp.components;
+
+/***/ },
+
+/***/ "@wordpress/data"
+/*!**************************!*\
+  !*** external "wp.data" ***!
+  \**************************/
+(module) {
+
+module.exports = wp.data;
 
 /***/ },
 
@@ -689,10 +713,9 @@ var getProducts = /*#__PURE__*/function () {
     return _regenerator().w(function (_context) {
       while (1) switch (_context.n) {
         case 0:
-          console.log('source', source);
           url = '/wp-admin/admin-ajax.php?action=get_products';
           if (source.type === 'term' && source.term) {
-            url += "&type=term&term=".concat(encodeURIComponent(source.term));
+            url += "&type=term&term=".concat(encodeURIComponent(source.term), "&perPage=").concat(source.perPage || 5);
           }
           if (!source.type && ((_source$ids = source.ids) === null || _source$ids === void 0 ? void 0 : _source$ids.length) > 0) {
             url += "&type=ids&ids=".concat(encodeURIComponent(source.ids.join(',')));
@@ -876,7 +899,7 @@ var getProducts = /*#__PURE__*/function () {
       setAttributes: setAttributes,
       selectedProducts: selectedProducts
     }), /*#__PURE__*/React.createElement(_source__WEBPACK_IMPORTED_MODULE_5__.ProductSelectionPanel, {
-      editable: (source === null || source === void 0 ? void 0 : source.type) !== 'term',
+      isEditable: (source === null || source === void 0 ? void 0 : source.type) != 'term',
       onAddProduct: function onAddProduct() {
         return setModalOpen(true);
       },
@@ -903,16 +926,27 @@ var getProducts = /*#__PURE__*/function () {
       max: 6,
       help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Number of columns in the grid layout.', 'englemond-products')
     }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
-      checked: view === null || view === void 0 ? void 0 : view.hideText,
+      checked: view === null || view === void 0 ? void 0 : view.showSidebar,
       onChange: function onChange(v) {
         return setAttributes({
           view: _objectSpread(_objectSpread({}, view), {}, {
-            hideText: v
+            showSidebar: v
           })
         });
       },
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hide Text', 'englemond-products'),
-      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Hide the text in the carousel.', 'englemond-products')
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Show sidebar', 'englemond-products'),
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Show the sidebar in the carousel.', 'englemond-products')
+    }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+      checked: view === null || view === void 0 ? void 0 : view.showHeader,
+      onChange: function onChange(v) {
+        return setAttributes({
+          view: _objectSpread(_objectSpread({}, view), {}, {
+            showHeader: v
+          })
+        });
+      },
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Show header', 'englemond-products'),
+      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Show the header in the carousel.', 'englemond-products')
     }), /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Aspect Ratio', 'englemond-products'),
       value: aspectRatio,
@@ -940,9 +974,11 @@ var getProducts = /*#__PURE__*/function () {
         });
       }
     }))), /*#__PURE__*/React.createElement(_templates__WEBPACK_IMPORTED_MODULE_6__.SelectionTemplate, {
+      isLoadingProducts: isLoadingProducts,
       setAttributes: setAttributes,
       attributes: attributes,
-      selectedProducts: selectedProducts
+      selectedProducts: selectedProducts,
+      isSelected: isSelected
     }), modalOpen && /*#__PURE__*/React.createElement(_source__WEBPACK_IMPORTED_MODULE_5__.ProductSelectorModal, {
       selection: selectedProducts,
       onSelect: onSelectProduct,

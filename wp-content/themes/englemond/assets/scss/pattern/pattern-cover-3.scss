@@ -1,15 +1,28 @@
 .pattern-cover-3{
-    &--image{
-        transform: translate(-100px,50px);
+    min-height: 630px;
+    h1{
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.33;
+        font-weight: 400;
+    }
+    .wp-block-cover__image-background{
+        bottom: 100px !important;
+        height: calc(100% - 100px) !important;
     }
     .wp-block-cover__inner-container{
-        padding-left: 10%;
+        max-width: 760px;
+        width: 80%;
+        color: var(--wp--preset--color--contrast);
+        background-color: var(--wp--preset--color--accent-1);
+        padding: clamp(1.5rem, 4vw, 60px);
+        min-height: 172px;
     }
     p{
-        font-size: clamp(1.5rem, 3vw, 2.25rem);
-    }
-    h1{
-        font-size: clamp(2.25rem, 5vw, 3.375rem);
+        text-align: center;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        line-height: 1.33;
+        font-weight: 400;
+        opacity: 0.5;
+        font-style: italic;
     }
 }
-

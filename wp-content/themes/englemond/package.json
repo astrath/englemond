@@ -41,5 +41,8 @@
 		"dev": "webpack --mode development --watch",
 		"build:css": "postcss style.css --use cssnano -o style.min.css --no-map",
 		"watch:css": "postcss style.css --use cssnano -o style.min.css --no-map --watch"
+	},
+	"dependencies": {
+		"@babel/preset-react": "^7.28.5"
 	}
 }

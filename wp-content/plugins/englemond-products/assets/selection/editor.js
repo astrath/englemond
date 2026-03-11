@@ -18,10 +18,9 @@ import { SelectionTemplate } from './templates';
  */
 
 const getProducts = async (source) => {
-	console.log('source', source);
 	let url = '/wp-admin/admin-ajax.php?action=get_products';
 	if (source.type === 'term' && source.term) {
-		url += `&type=term&term=${encodeURIComponent(source.term)}`;
+		url += `&type=term&term=${encodeURIComponent(source.term)}&perPage=${source.perPage || 5}`;
 	} 
 	if (!source.type && source.ids?.length > 0) {
 		url += `&type=ids&ids=${encodeURIComponent(source.ids.join(','))}`;
@@ -175,7 +174,7 @@ registerBlockType('englemond/selection', {
 					selectedProducts={selectedProducts}
 					/>
 					<ProductSelectionPanel
-					editable={source?.type !== 'term'}
+					isEditable={source?.type != 'term'}
 					onAddProduct={()=>setModalOpen(true)}
 					onRemoveProduct={onRemoveProduct}
 					selectedProducts={selectedProducts}
@@ -203,10 +202,16 @@ registerBlockType('englemond/selection', {
 							help={__('Number of columns in the grid layout.', 'englemond-products')}
 						/>
 						<ToggleControl
-						checked={view?.hideText}
-						onChange={v=>setAttributes({ view: { ...view, hideText: v } })}
-						label={__('Hide Text', 'englemond-products')}
-						help={__('Hide the text in the carousel.', 'englemond-products')}
+						checked={view?.showSidebar}
+						onChange={v=>setAttributes({ view: { ...view, showSidebar: v } })}
+						label={__('Show sidebar', 'englemond-products')}
+						help={__('Show the sidebar in the carousel.', 'englemond-products')}
+						/>
+						<ToggleControl
+						checked={view?.showHeader}
+						onChange={v=>setAttributes({ view: { ...view, showHeader: v } })}
+						label={__('Show header', 'englemond-products')}
+						help={__('Show the header in the carousel.', 'englemond-products')}
 						/>
 						<SelectControl
 							label={__('Aspect Ratio', 'englemond-products')}
@@ -225,10 +230,11 @@ registerBlockType('englemond/selection', {
 				</InspectorControls>
 
 				<SelectionTemplate
+				isLoadingProducts={isLoadingProducts}
 				setAttributes={setAttributes}
 					attributes={attributes}
 					selectedProducts={selectedProducts}
-
+					isSelected={isSelected}
 				/>
 				{modalOpen && <ProductSelectorModal
 					selection={selectedProducts}

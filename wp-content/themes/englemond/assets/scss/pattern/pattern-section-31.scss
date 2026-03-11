@@ -1,0 +1,43 @@
+@use '../variables' as *;
+.pattern-section-31{
+    overflow: hidden;
+    align-items: stretch;
+    justify-content: space-between;
+    @media (max-width: $tablet-max) {
+        flex-direction: column;
+        .wp-block-englemond-selection{
+            order: -1;
+        }
+    }
+    @media (min-width: $desktop-min) {
+        .wp-block-englemond-selection{
+            width: 60%;
+            max-width: 800px;
+        }
+    }
+    &__content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        flex-shrink: 0;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        @media (min-width: $desktop-min) {
+            width: 40%;
+            &:last-child{
+                background: linear-gradient(90deg, #FFF 0%, #FFF 20%, #F2F2F2 20%);
+            }
+            &:first-child{
+                align-items: end;
+                background: linear-gradient(-90deg, #FFF 0%, #FFF 20%, #F2F2F2 20%);
+            }
+        }
+        > * {
+            width: 100%;
+            max-width: 100%;
+            max-width: 400px;
+        }
+
+    }
+}
