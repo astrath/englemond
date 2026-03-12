@@ -6,3 +6,7 @@ section.wp-block-group{
 strong{
     font-weight: 700;
 }
+.wp-site-blocks > * {
+    margin-top: 0;
+    margin-bottom: 0;
+}
