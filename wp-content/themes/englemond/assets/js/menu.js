@@ -19,6 +19,7 @@ $.fn.englemondSubmenuPanoramaMenu = function() {
         
         $preview.html(`<h4>${title}</h4><p>${desc}</p><img src="${imgUrl}"}">`);
     });
+    
 
 }
 
@@ -26,4 +27,9 @@ $(function() {
     $('.is-style-submenu-panorama').each(function() {
         $(this).englemondSubmenuPanoramaMenu();
     });
-});
+    $(document).on('click', '.wp-block-navigation-submenu__toggle', function(e) {
+        $('.menu-is-open').removeClass('submenu-is-open');
+        $(this).parent().toggleClass('submenu-is-open');
+    });
+    
+});         

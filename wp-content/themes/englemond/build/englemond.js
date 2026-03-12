@@ -34,6 +34,10 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()('.is-style-submenu-panorama').each(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).englemondSubmenuPanoramaMenu();
   });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('click', '.wp-block-navigation-submenu__toggle', function (e) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.menu-is-open').removeClass('submenu-is-open');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().toggleClass('submenu-is-open');
+  });
 });
 
 /***/ },
