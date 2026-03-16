@@ -139,7 +139,9 @@ function mailtrap($phpmailer) {
     $phpmailer->Username = '6d47416af5b782';
     $phpmailer->Password = 'db0aa85cf5a0f1';
   }
+ if (defined('USE_MAILTRAP') && USE_MAILTRAP){
   add_action('phpmailer_init', 'mailtrap');
+ }
 
 function englemond_contact_message_update_status($id, $status) {
 	$messages = get_option('englemond_contact_messages', []);

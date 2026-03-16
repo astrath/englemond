@@ -109,6 +109,27 @@ add_action('admin_menu', function(){
 	remove_menu_page( 'edit.php' );
 });
 
+// Expose featured_media_url on REST API responses for products.
+add_action('rest_api_init', function () {
+	register_rest_field(
+		'product',
+		'featured_media_url',
+		array(
+			'get_callback' => function ( $object ) {
+				$post_id   = isset( $object['id'] ) ? (int) $object['id'] : 0;
+				$thumbnail = $post_id ? get_the_post_thumbnail_url( $post_id, 'medium' ) : '';
+
+				return $thumbnail ? esc_url_raw( $thumbnail ) : null;
+			},
+			'schema'      => array(
+				'description' => __( 'URL of the featured image for this product.', 'englemond' ),
+				'type'        => 'string',
+				'context'     => array( 'view', 'edit' ),
+			),
+		)
+	);
+});
+
 add_action('wp_footerz', function(){
 	?>
 	<script>
