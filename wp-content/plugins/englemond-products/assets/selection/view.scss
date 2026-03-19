@@ -1,14 +1,25 @@
+$tablet-min: 600px;
 .wp-block-englemond-selection {
     --control-size: 1.5rem;
     --aspect-ratio: 1/1;
+    --image-max-size: 100%;
+    text-align: center;
 	&__carousel {
-        gap: 1rem;
-		display: flex;
-		flex-direction: row;
+        display: flex;
+        flex-direction: column;
 		scroll-snap-type: x mandatory;
 		scroll-behavior: smooth;
 		-webkit-overflow-scrolling: touch;
-        &.align-left {
+        @media (min-width: $tablet-min) {
+            gap: 1rem;
+            display: flex;
+            flex-direction: row;
+        }
+        
+        
+    }
+    @media(min-width: $tablet-min) {
+        &.has-align-right &__carousel {
             flex-direction: row-reverse;
         }
     }
@@ -28,6 +39,7 @@
         display: block;
         height: auto;
         width: 100%;
+        max-width: var(--image-max-size);
         aspect-ratio: var(--aspect-ratio, 1/1);
         object-fit: contain;
     }
@@ -75,7 +87,9 @@
         }
     }
     &__side {
-        width: calc(100% - 600px);
+        @media (min-width: $tablet-min) {
+            width: calc(100% - var(--sidebar-width));
+        }
         flex-shrink: 0;
         a {
             display: block;
@@ -93,8 +107,34 @@
             
         }
     }
-    &.has-align-right &__header{
-        text-align: right;
+    @media(min-width: $tablet-min){
+        &.has-align-right{
+            text-align: right;
+        }
+        &.has-align-left{
+            text-align: left;
+        }
     }
-    
+    @media(max-width: $tablet-min){
+        &__carousel-controls {
+            position: initial !important;
+            
+        }
+        &__carousel-control-prev,
+        &__carousel-control-next {
+            position: absolute;
+            top: 50vw;
+            z-index: 100;
+        }
+        &__carousel-control-prev {
+            left: 0;
+            transform: translate(-50%, -50%);
+            right: auto;
+        }
+        &__carousel-control-next {
+            right: 0;
+            transform: translate(50%, -50%);
+            left: auto;
+        }
+    }
 }

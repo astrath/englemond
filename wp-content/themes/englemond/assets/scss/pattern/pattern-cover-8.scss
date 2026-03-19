@@ -1,12 +1,30 @@
 .pattern-cover-8{
+    --spacing: 100px;
+    min-height: 500px;
     color: var(--wp--preset--color--contrast);
+    .wp-block-cover__background,
+    .wp-block-cover__image-background{
+        bottom: 100px;
+        height: calc(100% - var(--spacing));
+    }
     .wp-block-cover__inner-container{
         display: flex;
-        align-items: center;
+        width: 1200px;
+        padding-bottom: 20px;
+        align-items: flex-end;
     }
-    p {
-        font-family: 'Raleway';
-        font-weight: 300;
-        font-size: clamp(2rem, 4vw, 3rem);
+    .wp-block-group{
+        width: 100%;
+        padding-bottom: var(--spacing);
     }
+    .wp-block-image{
+        width: 100%;
+        
+        img{
+            
+            box-shadow: 10px 10px 3px 1px rgba(244, 240, 240,1);
+            width: 340px;
+        }
+    }
+    
 }

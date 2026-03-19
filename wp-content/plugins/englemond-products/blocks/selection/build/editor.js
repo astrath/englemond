@@ -416,6 +416,7 @@ function SelectionTemplate(_ref) {
   var sourceType = (source === null || source === void 0 ? void 0 : source.type) || '';
   var columnsCount = (view === null || view === void 0 ? void 0 : view.columnsCount) || 3;
   var aspectRatio = (view === null || view === void 0 ? void 0 : view.aspectRatio) || '1:1';
+  var viewAlign = view.align || 'right';
   var _useState = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
     _useState2 = _slicedToArray(_useState, 2),
     activeIndex = _useState2[0],
@@ -425,6 +426,7 @@ function SelectionTemplate(_ref) {
       '--aspect-ratio': aspectRatio.replace(':', '/')
     }
   });
+  blockProps.className += ' has-align-' + viewAlign;
   if (viewType === 'grid') {
     return /*#__PURE__*/React.createElement("div", blockProps, selectedProducts.map(function (product) {
       return /*#__PURE__*/React.createElement(Product, {
@@ -432,7 +434,6 @@ function SelectionTemplate(_ref) {
       });
     }));
   }
-  var viewAlign = view.align || 'right';
   var activeTitle = ((_selectedProducts$act = selectedProducts[activeIndex]) === null || _selectedProducts$act === void 0 || (_selectedProducts$act = _selectedProducts$act.title) === null || _selectedProducts$act === void 0 ? void 0 : _selectedProducts$act.rendered) || ((_selectedProducts$act2 = selectedProducts[activeIndex]) === null || _selectedProducts$act2 === void 0 ? void 0 : _selectedProducts$act2.title) || 'Selectiio Vide';
   var carouselStyle = {
     width: selectedProducts.length * 100 / Math.max(columnsCount, 1) + '%',

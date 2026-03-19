@@ -1,0 +1,421 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Englemond Products\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-18 15:43+0000\n"
+"PO-Revision-Date: 2026-03-18 16:11+0000\n"
+"Last-Translator: Aymen Jerbi\n"
+"Language-Team: Français\n"
+"Language: fr_FR\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.1; wp-6.9.4; php-8.3.6\n"
+"X-Domain: englemond-products"
+
+#. %s: Site name
+#: includes/mailer.php:93
+#, php-format
+msgid "[%s] Contact Form: %s"
+msgstr "[%s] Formulaire de contact: %s"
+
+#: includes/model-product.php:110
+msgid "A pattern for a product content"
+msgstr ""
+
+#. Description of the plugin
+msgid "A plugin to manage products for the Englemond theme"
+msgstr ""
+
+#: includes/model-joaillery.php:22 includes/model-product.php:18
+msgid "Add New"
+msgstr "Ajouter un nouveau"
+
+#: includes/model-joaillery.php:23
+msgid "Add New Joaillery"
+msgstr ""
+
+#: includes/model-product.php:19
+msgid "Add New Product"
+msgstr ""
+
+#: includes/model-product.php:330
+msgid "All Categories"
+msgstr ""
+
+#: includes/model-joaillery.php:21
+msgid "All Joaillery"
+msgstr ""
+
+#: includes/model-product.php:17
+msgid "All Products"
+msgstr ""
+
+#: includes/inbox.php:13
+msgid "Apply"
+msgstr "Appliquer"
+
+#. Author of the plugin
+msgid "Aymen Jerbi"
+msgstr ""
+
+#: blocks/contact-form/block.json:1
+msgctxt "block description"
+msgid "A contact form block for Englemond"
+msgstr "Un block affichant un formulaire de contact"
+
+#: blocks/gallery/block.json:1
+msgctxt "block description"
+msgid "A gallery block for Englemond products"
+msgstr ""
+
+#: blocks/browser/block.json:1
+msgctxt "block description"
+msgid "A product browser with filtering, search, pagination, and category tree"
+msgstr ""
+
+#: blocks/selection/block.json:1
+msgctxt "block description"
+msgid "A selection block for Englemond products"
+msgstr ""
+
+#: blocks/browser/block.json:1
+msgctxt "block keyword"
+msgid "browser"
+msgstr ""
+
+#: blocks/contact-form/block.json:1
+msgctxt "block keyword"
+msgid "contact"
+msgstr ""
+
+#: blocks/contact-form/block.json:1 blocks/gallery/block.json:1
+#: blocks/selection/block.json:1 blocks/browser/block.json:1
+msgctxt "block keyword"
+msgid "englemond"
+msgstr ""
+
+#: blocks/browser/block.json:1
+msgctxt "block keyword"
+msgid "filter"
+msgstr ""
+
+#: blocks/contact-form/block.json:1
+msgctxt "block keyword"
+msgid "form"
+msgstr ""
+
+#: blocks/gallery/block.json:1
+msgctxt "block keyword"
+msgid "gallery"
+msgstr ""
+
+#: blocks/gallery/block.json:1
+msgctxt "block keyword"
+msgid "images"
+msgstr ""
+
+#: blocks/selection/block.json:1 blocks/browser/block.json:1
+msgctxt "block keyword"
+msgid "products"
+msgstr ""
+
+#: blocks/browser/block.json:1
+msgctxt "block keyword"
+msgid "search"
+msgstr "Recherche"
+
+#: blocks/selection/block.json:1
+msgctxt "block keyword"
+msgid "selection"
+msgstr ""
+
+#: blocks/selection/block.json:1
+msgctxt "block style label"
+msgid "Default"
+msgstr ""
+
+#: blocks/contact-form/block.json:1
+msgctxt "block title"
+msgid "Englemond Contact Form"
+msgstr ""
+
+#: blocks/gallery/block.json:1
+msgctxt "block title"
+msgid "Englemond Gallery"
+msgstr ""
+
+#: blocks/browser/block.json:1
+msgctxt "block title"
+msgid "Englemond Product Browser"
+msgstr ""
+
+#: blocks/selection/block.json:1
+msgctxt "block title"
+msgid "Englemond Selection"
+msgstr ""
+
+#: includes/inbox.php:10
+msgid "Bulk action"
+msgstr "Action groupée"
+
+#: includes/model-product.php:32
+msgid "Categories"
+msgstr "Catégories"
+
+#: includes/model-product.php:30 includes/model-product.php:33
+#: includes/model-product.php:224
+msgid "Category"
+msgstr "Catégorie"
+
+#: blocks/contact-form/render.php:33
+msgid "Close"
+msgstr "Fermer"
+
+#: includes/settings.php:90
+msgid "Configure shop information settings."
+msgstr ""
+
+#: includes/settings.php:62
+msgid "Contact Email"
+msgstr "Email de contact"
+
+#: includes/contact.php:7 includes/inbox.php:1
+msgid "Contact Inbox"
+msgstr ""
+
+#: blocks/contact-form/render.php:27 blocks/contact-form/render.php:37
+#: blocks/contact-form/render.php:46
+msgid "Contact Us"
+msgstr "Contactez nous"
+
+#: includes/model-product.php:108
+msgid "Content Product"
+msgstr ""
+
+#: includes/inbox.php:26
+msgid "Date"
+msgstr ""
+
+#: includes/inbox.php:11
+msgid "Delete"
+msgstr "Supprimer"
+
+#: includes/model-product.php:228
+msgid "Detail"
+msgstr "Détail"
+
+#: includes/model-product.php:140
+msgid "Details updated successfully."
+msgstr "Détail du produit mis à jour"
+
+#: includes/settings.php:101
+msgid "e.g., +33 1 23 45 67 89"
+msgstr "example:, +33 1 23 45 67 89"
+
+#: includes/settings.php:115
+msgid "e.g., Commander"
+msgstr ""
+
+#: includes/settings.php:129
+msgid "e.g., contact@example.com"
+msgstr ""
+
+#: includes/inbox.php:30 blocks/contact-form/form.php:33
+msgid "Email"
+msgstr "Email"
+
+#. Name of the plugin
+msgid "Englemond Products"
+msgstr ""
+
+#: includes/settings.php:15
+msgid "Englemond Shop"
+msgstr "Boutique "
+
+#: includes/settings.php:14
+msgid "Englemond Shop Settings"
+msgstr "Paramètres de la boutique"
+
+#: includes/settings.php:131
+msgid "Enter the default contact email address for form submissions."
+msgstr ""
+
+#: includes/settings.php:103
+msgid "Enter the shop phone number."
+msgstr ""
+
+#: includes/settings.php:117
+msgid "Enter the text for the order button."
+msgstr ""
+
+#: includes/model-product.php:227
+msgid "Gallery"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://example.com"
+msgstr ""
+
+#: includes/contact.php:6
+msgid "Inbox"
+msgstr "Boite de recepton"
+
+#: includes/inbox.php:28
+msgid "IP"
+msgstr ""
+
+#: includes/model-joaillery.php:8 includes/model-joaillery.php:12
+#: includes/model-joaillery.php:18 includes/model-joaillery.php:19
+#: includes/model-joaillery.php:20
+msgid "Joaillery"
+msgstr ""
+
+#: blocks/browser/render.php:66
+msgid "Loading products..."
+msgstr "Chargement des produits..."
+
+#: includes/inbox.php:32 blocks/contact-form/form.php:59
+msgid "Message"
+msgstr ""
+
+#: includes/inbox.php:29 blocks/contact-form/form.php:20
+msgid "Name"
+msgstr "Nom"
+
+#. %1$s: Name, %2$s: Email, %3$s: Subject, %4$s: Message
+#: includes/mailer.php:100
+#, php-format
+msgid ""
+"Name: %1$s\n"
+"Email: %2$s\n"
+"Subject: %3$s\n"
+"\n"
+"Message:\n"
+"%4$s"
+msgstr ""
+
+#: blocks/selection/render-carousel.php:51
+msgid "Next"
+msgstr "Suivant"
+
+#: blocks/gallery/render.php:23
+msgid "No images found."
+msgstr "Aucune image trouvée"
+
+#: includes/inbox.php:62
+msgid "No messages found"
+msgstr "Aucun message trouvé"
+
+#: blocks/browser/render.php:75
+msgid "No products found."
+msgstr "Aucun produit trouvé"
+
+#: includes/settings.php:31 includes/settings.php:109
+msgid "Order"
+msgstr "Commander"
+
+#: includes/settings.php:54
+msgid "Order Button Text"
+msgstr "Texte du bouton commander"
+
+#: includes/model-product.php:128 includes/model-product.php:153
+msgid "Permission denied."
+msgstr "Accès refusé."
+
+#: includes/settings.php:46
+msgid "Phone Number"
+msgstr "Numéro de téléphone"
+
+#: includes/mailer.php:44
+msgid "Please enter a valid email address."
+msgstr "Veuillez entrer une adresse email valide."
+
+#: includes/mailer.php:34
+msgid "Please fill in all required fields."
+msgstr "Veuillez remplir les champs obligatoires."
+
+#: blocks/selection/render-carousel.php:48
+msgid "Previous"
+msgstr "Précédent"
+
+#: includes/model-product.php:226
+msgid "Price"
+msgstr "Prix"
+
+#: includes/model-product.php:160
+msgid "Price updated successfully."
+msgstr ""
+
+#: includes/model-product.php:10 includes/model-product.php:15
+msgid "Product"
+msgstr ""
+
+#: includes/model-product.php:14 includes/model-product.php:16
+msgid "Products"
+msgstr "Produits"
+
+#: includes/model-product.php:225
+msgid "Reference"
+msgstr "Référence"
+
+#: includes/settings.php:157
+msgid "Save Settings"
+msgstr "Enregistrer les paramètres"
+
+#: blocks/browser/render.php:58
+msgid "Search products"
+msgstr "Chercher un produit"
+
+#: blocks/browser/render.php:57
+msgid "Search products..."
+msgstr "Chercher un produit..."
+
+#: includes/mailer.php:19 includes/contact.php:20
+msgid "Security check failed. Please refresh the page and try again."
+msgstr ""
+
+#: blocks/contact-form/form.php:71
+msgid "Send Message"
+msgstr "Envoyer le message"
+
+#: includes/settings.php:144
+msgid "Settings Saved"
+msgstr "Paramètres sauvegardés."
+
+#: includes/settings.php:39
+msgid "Shop Information"
+msgstr "Information sur la boutique"
+
+#: includes/inbox.php:53
+msgid "Show message"
+msgstr "Afficher le message"
+
+#: includes/mailer.php:125
+msgid "Sorry, there was an error sending your message. Please try again later."
+msgstr ""
+
+#: includes/inbox.php:23
+msgid "Status"
+msgstr "Statut"
+
+#: includes/inbox.php:31 blocks/contact-form/form.php:46
+msgid "Subject"
+msgstr "Objet"
+
+#: includes/mailer.php:120 blocks/contact-form/form.php:76
+msgid "Thank you! Your message has been sent."
+msgstr "Merci! Votre message a bien été envoyé."
+
+#: includes/model-joaillery.php:48 includes/model-product.php:222
+msgid "Thumbnail"
+msgstr "Miniature"
+
+#: includes/mailer.php:50
+#, php-format
+msgid "Too many requests. Please try again later. Last message was sent at %s"
+msgstr ""
+"Vous avez fait un grand nombre de requêtes. Votre dernier message a été "
+"envoyé le %s"

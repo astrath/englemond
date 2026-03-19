@@ -31,5 +31,8 @@ $(function() {
         $('.menu-is-open').removeClass('submenu-is-open');
         $(this).parent().toggleClass('submenu-is-open');
     });
+    $(document).on('click', '.main-menu-toggle', function(e) {
+        $('.wp-block-navigation__responsive-container-open').click();
+    });
     
 });         

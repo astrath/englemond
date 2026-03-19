@@ -1,32 +1,39 @@
 @use '../variables' as *;
 
 .pattern-cover-6{
+    color: var(--wp--preset--color--contrast);
     min-height: 430px;
-    padding-bottom: 0;
     overflow: visible;
     margin-bottom: 100px;
     .wp-block-cover__inner-container{
-        padding-bottom: 2rem;
-        @media (min-width: $desktop-min) {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-        }
-        max-width: 1500px;
-        width: 80%;
-        
-        align-items: center;
-        gap: 2rem;
-        flex-direction: row;
+        text-align: center;
         margin: 0 auto !important;
+        @media (min-width: $desktop-min) {
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            width: 80%;
+            max-width: 1500px;
+            text-align: left;
+        }
+    }
+    p{
+        font-size: clamp(1.5rem, 3vw, 2.25rem);
+        font-family: Raleway;
+        font-weight: 300;
+    }
+    .wp-block-group{
+        width: 100%;
+        > * {
+            width: 730px;
+            max-width: 100%;
+        }
     }
     .wp-block-image{
-        img{
-            transform: translate(0, 50%);
-            box-shadow: 21px 21px 3px 1px rgba(234, 196, 196, 1);
-            width: 360px !important;
-            max-width: 80vw;
-            object-fit: cover;
-            height: 200px;
+        width: 100%;
+        @meida (max-width: $mobile-max) {
+            display: none;
         }
     }
 }

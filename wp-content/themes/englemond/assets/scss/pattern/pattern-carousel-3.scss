@@ -1,19 +1,35 @@
+@use '../variables' as *;
 .pattern-carousel-3{
     .wp-block-image{
-        padding-left: 360px; 
+        @media (min-width: $tablet-min) {
+            padding-left: 360px; 
+        }
         img{
             width: 100%;
         }
     }
+    > .wp-block-group{
+        @media (max-width: $mobile-max) {
+            flex-direction: column;
+        }
+        @media (min-width: $tablet-min) {
+            text-align: left;
+        }
+    }
     .wp-block-englemond-selection{
         width: 600px;
-        margin-top: -250px;;
+        max-width: 100%;
+        @media (min-width: $tablet-min) {
+            margin-top: -250px;;
+        }
     }
     > .wp-block-group{
-        gap: 4rem;
+        gap: clamp(1rem, 3vw, 4rem);
         align-items: start;
-         .wp-block-group{
-            padding-top: 3rem;
+        @media (min-width: $tablet-min) {
+            .wp-block-group{
+                padding-top: 3rem;
+            }
         }
     }
     p{
@@ -25,11 +41,15 @@
     }
     &:nth-child(even){
         .wp-block-image{
+            @media (min-width: $tablet-min) {
             padding-left: 0;
             padding-right: 360px;
+            }
         }
         > .wp-block-group{
-            flex-direction: row-reverse;
+            @media (min-width: $tablet-min) {
+                flex-direction: row-reverse;
+            }
         }
         .wp-block-englemond-selection__carousel-viewport{
             background: linear-gradient(-90deg, #FFF 0%, #FFF 50%, #F2F2F2 50%, #F2F2F2 100%);

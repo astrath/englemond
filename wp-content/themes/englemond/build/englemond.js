@@ -38,6 +38,9 @@ jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.menu-is-open').removeClass('submenu-is-open');
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parent().toggleClass('submenu-is-open');
   });
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('click', '.main-menu-toggle', function (e) {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.wp-block-navigation__responsive-container-open').click();
+  });
 });
 
 /***/ },

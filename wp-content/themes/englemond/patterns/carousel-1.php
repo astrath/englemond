@@ -16,7 +16,7 @@ $text = apply_filters('englemond/carousel-1/text', 'Ces suggestions peuvent vous
 <section class="wp-block-group alignwide pattern-carousel-1"><?php if ($text): ?><!-- wp:paragraph {"placeholder":"Titre de la section"} -->
 <p><?= $text ?></p><!-- /wp:paragraph --><?php endif; ?>
 
-<!-- wp:group {"align":"wide", "allowedBlocks":["englemond/selection"], "templateLock":false} -->
+<!-- wp:group {"align":"wide", "allowedBlocks":["englemond/selection"], "templateLock":false, "style":{"spacing":{"blockGap":"var:preset|spacing|80"}}} -->
  <div class="wp-block-group alignwide">
 <?php foreach ($collections as $index => $collection): ?>
 <!-- wp:englemond/selection <?= json_encode($collection) ?> /-->

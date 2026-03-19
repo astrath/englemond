@@ -142,7 +142,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       this.productsPerPage = parseInt($container.data('products-per-page')) || 12;
       this.currentPage = 1;
       this.currentCategories = [];
-      this.currentSearch = '';
+      this.currentSearch = $container.find('.wp-block-englemond-browser__search-input').val().trim();
       this.ajaxUrl = $container.data('ajax-url');
       this.nonce = $container.data('nonce');
       this.$productsGrid = $container.find('.wp-block-englemond-browser__products-grid');
@@ -208,6 +208,12 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
           self.updateCategoriesFromCheckboxes();
           self.currentPage = 1;
           self.loadProducts();
+        });
+        this.$container.on('click', '.wp-block-englemond-browser__sidebar-toggle', function () {
+          self.$container.find('.wp-block-englemond-browser__sidebar').toggleClass('active');
+        });
+        this.$container.on('click', '.wp-block-englemond-browser__sidebar-close', function () {
+          self.$container.find('.wp-block-englemond-browser__sidebar').removeClass('active');
         });
 
         // Initial load

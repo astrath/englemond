@@ -1,0 +1,138 @@
+@use '../variables' as *;
+.is-style-selection-5.wp-block-englemond-selection{
+    position: relative;
+    .wp-block-englemond-selection{
+        
+        &__item-link{
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            @media (min-width: $tablet-min) {
+                gap: 20px;
+                flex-direction: row;
+            }
+            img{
+                width: 75%;
+                @media (min-width: $tablet-min) {
+                        width: 33%;
+                        flex-shrink: 0;
+                }
+            }
+        }
+        &__item-title{
+            margin: 1rem 0;
+            font-size: var(--wp--preset--font-size--large);
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+        }
+        &__header{
+            margin-bottom: 2rem;
+            h3{
+                margin: 0;
+                font-size: clamp(2.5rem, 5vw, 4rem);
+            }
+            p{
+                margin: 0;
+                color: var(--wp--preset--color--accent-3);
+                font-family: 'Raleway';
+                font-size: clamp(1rem, 2vw, 1.5rem);
+            }
+        }
+        
+        &__carousel{
+            --control-size: 2rem;;
+            position: relative;
+            &-viewport{
+                position: relative;
+                max-width: 800px;
+                
+            }
+            &-item{
+                padding: var(--control-size);
+                padding-top: calc(var(--control-size) + 3rem);
+                
+                @media (min-width: $tablet-min) {
+                    
+                    padding-right: calc(var(--control-size) * 2 + 4rem);
+                    padding-left: 4rem;
+                    padding-bottom: 2rem;
+                }
+            }
+            &-viewport:before{
+                content: '';
+                position: absolute;
+                top: 0;
+                left: calc(var(--control-size) * 2 + 2rem);
+                right: 0;
+                bottom: 100px;
+                background-color: #f2f2f2;
+            }
+            &-viewport:after{
+                content: '';
+                position: absolute;
+                top: calc(var(--control-size) + 1rem);
+                left: var(--control-size);
+                right: calc(var(--control-size) * 2 + 2rem);
+                bottom: 0rem;
+                background-color: #F9F9F9;
+                z-index: 1;
+            }
+            &-inner{
+                position: relative;
+                z-index: 2;
+            }
+        }
+        
+        
+        
+        &__carousel-controls{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+        &__side{
+            display: none;
+        }
+    }
+    &.has-align-right{
+        @media (min-width: $tablet-min) {        
+            .wp-block-englemond-selection__item-link{
+                flex-direction: row-reverse;
+            }
+            .wp-block-englemond-selection__carousel{
+                &-controls{
+                    right: 0;
+                    left: auto;
+                }
+                &-viewport:before{
+                    right: calc(var(--control-size) * 2 + 2rem);
+                    left: 0;
+                }
+                &-viewport:after{
+                    right: var(--control-size);
+                    left: calc(var(--control-size) * 2 + 2rem);
+                }
+                &-item{
+                    padding-left: calc(var(--control-size) * 2 + 4rem);
+                    padding-right: 4rem;
+                }
+            }
+        }
+    }
+    @media (max-width: $mobile-max) {
+        .wp-block-englemond-selection__carousel{
+            &-viewport:before{
+                left: 0;
+                right: 0;
+                
+            }
+            &-viewport:after{
+                right: calc(var(--control-size) / 2);
+                left: calc(var(--control-size) / 2);
+            }
+        }
+    }
+    
+}

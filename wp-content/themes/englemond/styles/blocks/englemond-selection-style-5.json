@@ -1,0 +1,14 @@
+{
+	"$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+	"version": 3,
+	"slug": "selection-5",
+	"title": "Style 5",
+	"blockTypes": [
+		"englemond/selection"
+	],
+    "styles": {
+        "color": {
+            "text": "var:preset|color|contrast"
+        }
+    }
+}

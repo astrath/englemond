@@ -21,6 +21,16 @@ require_once __DIR__ . '/includes/mailer.php';
 require_once __DIR__ . '/ajax.php';
 require_once __DIR__ . '/includes/contact.php';
 
+add_action('plugins_loaded', 'englemond_products_load_textdomain');
+function englemond_products_load_textdomain() {
+	// Load plugin translations from `wp-content/plugins/englemond-products/languages/`.
+	load_plugin_textdomain(
+		'englemond-products',
+		false,
+		$x = basename(__DIR__) . '/languages'
+	);
+}
+
 add_action('admin_enqueue_scripts', 'englemond_products_admin_enqueue_scripts');
 function englemond_products_admin_enqueue_scripts() {
 	$screen = get_current_screen();

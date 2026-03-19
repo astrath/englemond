@@ -6,39 +6,16 @@
  * Description: A full-width carousel of products.
  *
  */
+$collections = apply_filters('englemond/carousel-4/collections', [
+    ['title'=>'Diamants', 'view'=>['type'=>'carousel', 'columns'=>1, 'align'=>'left', 'showHeader'=>true, 'showSidebar'=>true], 'source'=>['type'=>'term','term'=>153], 'align'=>'left', 'className'=>'is-style-carousel-4'],
+    ['title'=>'Saphir', 'view'=>['type'=>'carousel', 'columns'=>1, 'align'=>'right', 'showHeader'=>true, 'showSidebar'=>true], 'source'=>['type'=>'term','term'=>201], 'align'=>'right', 'className'=>'is-style-carousel-4'],
+]);
 ?>
-<!-- wp:group {"tagName":"section","metadata":{"name":"Carousel 4"},"align":"full","className":"pattern-carousel-4","layout":{"type":"constrained"}} -->
-<section class="wp-block-group alignfull pattern-carousel-4"><!-- wp:heading {"textAlign":"left","level":3,"align":"wide","fontSize":"x-large"} -->
-<h3 class="wp-block-heading alignwide has-text-align-left has-x-large-font-size">Diamants</h3>
-<!-- /wp:heading -->
-
-<!-- wp:columns {"align":"wide"} -->
-<div class="wp-block-columns alignwide"><!-- wp:column {"verticalAlignment":"center","width":"60%"} -->
-<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:60%"><!-- wp:englemond/selection {"source":{"type":"term","term":"153"},"view":{"type":"carousel","align":"left","hideText":true,"columnsCount":1},"align":"wide","className":"is-style-style-1"} /--></div>
-<!-- /wp:column -->
-
-<!-- wp:column {"verticalAlignment":"center","width":"30%"} -->
-<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:30%"><!-- wp:image {"lightbox":{"enabled":false},"id":4683,"sizeSlug":"large","linkDestination":"custom"} -->
-<figure class="wp-block-image size-large"><a href="http://localhost:7001/pierres/diamant/"><img src="/wp-content/uploads/2023/01/DIAMANT-TAILLE.jpg" alt="" class="wp-image-4683"/></a></figure>
-<!-- /wp:image --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns --></section>
-<!-- /wp:group -->
-
-<!-- wp:group {"tagName":"section","metadata":{"name":"Carousel 4"},"align":"full","className":"pattern-carousel-4","layout":{"type":"constrained"}} -->
-<section class="wp-block-group alignfull pattern-carousel-4"><!-- wp:heading {"textAlign":"right","level":3,"align":"wide","fontSize":"x-large"} -->
-<h3 class="wp-block-heading alignwide has-text-align-right has-x-large-font-size">Saphir</h3>
-<!-- /wp:heading -->
-
-<!-- wp:columns {"align":"wide"} -->
-<div class="wp-block-columns alignwide"><!-- wp:column {"verticalAlignment":"center","width":"30%"} -->
-<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:30%"><!-- wp:image {"lightbox":{"enabled":false},"id":4685,"sizeSlug":"large","linkDestination":"custom"} -->
-<figure class="wp-block-image size-large"><a href="http://localhost:7001/pierres/saphir-bleu/"><img src="/wp-content/uploads/2023/01/Site-Saphirs.jpg" alt="" class="wp-image-4685"/></a></figure>
-<!-- /wp:image --></div>
-<!-- /wp:column -->
-
-<!-- wp:column {"verticalAlignment":"center","width":"60%"} -->
-<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:60%"><!-- wp:englemond/selection {"source":{"type":"term","term":"201"},"view":{"type":"carousel","align":"right","hideText":true,"columnsCount":1},"align":"wide","className":"is-style-style-1"} /--></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns --></section>
-<!-- /wp:group -->
+<!-- wp:group {"tagName":"section","templateLock":"all","metaData":{"name":"Carousel 4","categories":["englemond_carousel"],"patternName":"englemond/carousel-4"},"align":"wide","className":"pattern-carousel-4","layout":{"type":"default"}} -->
+<section class="wp-block-group alignwide pattern-carousel-4"><!-- wp:group {"align":"wide", "allowedBlocks":["englemond/selection"], "templateLock":false} -->
+ <div class="wp-block-group alignwide">
+<?php foreach ($collections as $index => $collection): ?>
+<!-- wp:englemond/selection <?= json_encode($collection) ?> /-->
+<?php endforeach; ?>
+</div><!-- /wp:group -->
+</section><!-- /wp:group -->

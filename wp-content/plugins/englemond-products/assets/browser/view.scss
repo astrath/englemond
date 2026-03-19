@@ -1,10 +1,65 @@
+$mobile-max: 599px;
 .wp-block-englemond-browser {
+	--border-color: #DDD;
 	display: flex;
 	flex-direction: row;
 	gap: 2rem;
 	width: 100%;
+	@media (max-width: $mobile-max) {
+		flex-direction: column;
+	}
+	&__sidebar-toggle {
+		display: none;
+		@media (max-width: $mobile-max) {
+			display: block;
+			background: #FFF;
+			border: 1px solid var(--border-color);
+		}
+	}
+	&__sidebar-close {
+		display: none;
+		border: none;
+		background: none;
+		padding: 0;
+		margin: 0;
+		font-size: 2rem;
+		cursor: pointer;
+		color: #333;
+		transition: color 0.2s;
+		position: absolute;
+		top: 0.5rem;
+		right: 0.5rem;
+		&:hover {
+			color: #000;
+		}
+		@media (max-width: $mobile-max) {
+			display: block;
+		}
+	}
 	&__sidebar {
 		flex: 0 0 350px;
+
+		@media (max-width: $mobile-max) {
+			z-index: -1;
+			position: fixed;
+			top: 50px;
+			left: 20px;
+			bottom: 20px;
+			overflow-y: auto;
+			right: 20px;
+			opacity: 0;
+			pointer-events: none;
+			background: #fff;
+			box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+			&.active {
+				padding-top: 3rem;
+				display: block;
+				z-index: 1000;
+				opacity: 1;
+				pointer-events: auto;
+			}
+
+		}
 		ul {
 			list-style: none;
 			margin: 0;
@@ -41,13 +96,15 @@
 
 	&__search {
 		flex: 1;
+		display: flex;
+		flex-direction: row;
 		min-width: 200px;
 	}
 
 	&__search-input {
 		width: 100%;
 		padding: 0.75rem 1rem;
-		border: 1px solid #ddd;
+		border: 1px solid var(--border-color);
 		border-radius: 4px;
 		font-size: 1rem;
 		transition: border-color 0.2s;

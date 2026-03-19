@@ -14,7 +14,6 @@ $show_category_tree = isset($attributes['showCategoryTree']) ? $attributes['show
 $show_search = isset($attributes['showSearch']) ? $attributes['showSearch'] : true;
 
 
-
 $categories = englemond_browser_get_category_tree();
 
 $wrapper_attributes = get_block_wrapper_attributes([
@@ -25,9 +24,14 @@ $wrapper_attributes = get_block_wrapper_attributes([
 ]);
 
 ?>
+
 <div <?php echo $wrapper_attributes; ?>>
-    <div class="wp-block-englemond-browser__sidebar">
-        <?php foreach ($categories as $category) : ?>
+    
+<div class="wp-block-englemond-browser__sidebar">
+    <button class="wp-block-englemond-browser__sidebar-close" aria-label="<?php esc_attr_e('Close filters', 'englemond-products'); ?>">
+        &times;
+    </button>
+    <?php foreach ($categories as $category) : ?>
         <div class="wp-block-englemond-browser__panel">
             <h3 class="wp-block-englemond-browser__panel-title">
                 <?php echo esc_html($category->name); ?>
@@ -52,11 +56,15 @@ $wrapper_attributes = get_block_wrapper_attributes([
                 <?php if ($show_search) : ?>
                 <div class="wp-block-englemond-browser__search">
                     <input 
+                        value="<?= esc_attr(get_query_var('s') ?? ''); ?>"
                         type="search" 
                         class="wp-block-englemond-browser__search-input" 
                         placeholder="<?php esc_attr_e('Search products...', 'englemond-products'); ?>"
                         aria-label="<?php esc_attr_e('Search products', 'englemond-products'); ?>"
                     />
+                    <button class="wp-block-englemond-browser__sidebar-toggle" aria-label="<?php esc_attr_e('Open filters', 'englemond-products'); ?>">
+                        <?php esc_html_e('Filters', 'englemond-products'); ?>
+                    </button>
                 </div>
                 <?php endif; ?>
             </div>

@@ -28,6 +28,10 @@
 		"noresultText": {
 			"type": "string",
 			"default": "No products found."
+		},
+		"useGlobalQuery": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {

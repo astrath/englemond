@@ -381,7 +381,7 @@ function englemond_products_orderby_meta($query) {
 
 function englemond_browser_get_category_tree() {
     global $wpdb;
-    $sql = $wpdb->prepare("SELECT t.term_id, t.name, t.slug, tt.taxonomy FROM {$wpdb->term_taxonomy} tt join {$wpdb->terms} t on tt.term_id = t.term_id WHERE parent = 0 and taxonomy = 'product_cat'");
+    $sql = "SELECT t.term_id, t.name, t.slug, tt.taxonomy FROM {$wpdb->term_taxonomy} tt join {$wpdb->terms} t on tt.term_id = t.term_id WHERE parent = 0 and taxonomy = 'product_cat' order by t.name asc";
     $root = $wpdb->get_results($sql);
     $tree = [];
     foreach ($root as $term) {
@@ -389,7 +389,7 @@ function englemond_browser_get_category_tree() {
         $tree[$term->term_id] = $term;
     }
     $rootIds = array_keys($tree);
-    $sql = $wpdb->prepare("SELECT t.term_id, tt.parent, t.name, t.slug, tt.taxonomy FROM {$wpdb->term_taxonomy} tt join {$wpdb->terms} t on tt.term_id = t.term_id WHERE parent in (" . implode(',', $rootIds) . ") and taxonomy = 'product_cat'");
+    $sql = "SELECT t.term_id, tt.parent, t.name, t.slug, tt.taxonomy FROM {$wpdb->term_taxonomy} tt join {$wpdb->terms} t on tt.term_id = t.term_id WHERE parent in (" . implode(',', $rootIds) . ") and taxonomy = 'product_cat' order by t.name asc";
     $children = $wpdb->get_results($sql);
     foreach ($children as $child) {
         $tree[$child->parent]->children[] = $child;
@@ -405,4 +405,73 @@ function englemond_browser_get_category_tree() {
         }
     }
     return $tree;
+}
+
+/**
+ * Add a badge to the WP admin "Products" menu with published products count.
+ */
+add_action('admin_menu', 'englemond_products_admin_menu_badge');
+function englemond_products_admin_menu_badge() {
+    if (!is_admin()) {
+        return;
+    }
+
+    // Count only published products.
+    $counts = wp_count_posts('product');
+    $published_count = isset($counts->publish) ? (int) $counts->publish : 0;
+    $badge_html = sprintf(
+        ' <span class="englemond-products-menu-badge" aria-label="%d">%d</span>',
+        $published_count,
+        $published_count
+    );
+
+    global $menu;
+    if (empty($menu) || !is_array($menu)) {
+        return;
+    }
+    // The CPT admin menu item uses the slug: edit.php?post_type=product
+    foreach ($menu as $menu_key => $menu_item) {
+        if (!isset($menu_item[2])) {
+            continue;
+        }
+
+        if ($menu_item[2] !== 'edit.php?post_type=product') {
+            continue;
+        }
+
+        // Avoid duplicating the badge if WP rebuilds menu entries.
+        $already_has_badge =
+            (isset($menu_item[0]) && strpos((string) $menu_item[0], 'englemond-products-menu-badge') !== false);
+
+        if ($already_has_badge) {
+            continue;
+        }
+
+        if (isset($menu[$menu_key][0])) {
+            $menu[$menu_key][0] .= $badge_html;
+        }
+    }
+}
+
+add_action('admin_head', 'englemond_products_admin_menu_badge_styles');
+function englemond_products_admin_menu_badge_styles() {
+    echo '
+        <style type="text/css">
+            .englemond-products-menu-badge{
+                display:inline-block;
+                min-width:22px;
+                padding:0 6px;
+                height:20px;
+                line-height:20px;
+                text-align:center;
+                background:#d63638;
+                color:#fff;
+                border-radius:10px;
+                font-size:12px;
+                font-weight:600;
+                margin-left:6px;
+                vertical-align:middle;
+            }
+        </style>
+    ';
 }

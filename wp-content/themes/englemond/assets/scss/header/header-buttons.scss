@@ -1,0 +1,48 @@
+@use '../variables' as *;
+.site-header{ 
+    width: 1440px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    position: relative;
+    @media (max-width: $mobile-max) {
+        > * {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+    .wp-block-image a {
+        display: block;
+        line-height: 1;
+    }
+    .main-menu-toggle{
+        display: none;
+        @media (max-width: $mobile-max) {
+            display: block;
+        }
+    }
+    > .top-buttons{
+        font-size: 1rem;
+        position: absolute;
+        right: 0;
+        z-index: 10;
+        top: 1rem;
+        @media (max-width: $tablet-min) {
+            top: 50%;
+            right: 1rem;
+            transform: translateY(-50%);
+        }
+        > * {
+            opacity: 0.5;
+            width: 1em;
+            height: 1em;
+            &:hover{
+                opacity: 1;
+            }
+        }
+    }
+    .wp-block-navigation__responsive-container-open{
+        display: none;
+    }
+}

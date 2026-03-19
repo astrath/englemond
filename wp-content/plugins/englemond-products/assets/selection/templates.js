@@ -15,12 +15,14 @@ export function SelectionTemplate({ attributes, selectedProducts, setAttributes,
 	const sourceType = source?.type || '';
 	const columnsCount = view?.columnsCount || 3;
 	const aspectRatio = view?.aspectRatio || '1:1';
+	const viewAlign = view.align || 'right';
 	const [activeIndex, setActiveIndex] = useState(0);
 	const blockProps = useBlockProps({
 		style: {
 			'--aspect-ratio': aspectRatio.replace(':', '/')
-		}
+		},
 	});
+	blockProps.className += ' has-align-' + viewAlign;
 	if (viewType === 'grid') {
 		return (
 				<div {...blockProps}>
@@ -30,7 +32,6 @@ export function SelectionTemplate({ attributes, selectedProducts, setAttributes,
 				</div>
 			);
 	}
-	const viewAlign = view.align || 'right';
 	const activeTitle = selectedProducts[activeIndex]?.title?.rendered || selectedProducts[activeIndex]?.title || 'Selectiio Vide';
 	const carouselStyle = {
 		width: (selectedProducts.length * 100 / Math.max(columnsCount, 1)) + '%',
