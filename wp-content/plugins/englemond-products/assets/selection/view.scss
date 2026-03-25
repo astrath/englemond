@@ -43,6 +43,9 @@ $tablet-min: 600px;
         aspect-ratio: var(--aspect-ratio, 1/1);
         object-fit: contain;
     }
+    &__item {
+        position: relative;
+    }
     &__carousel-controls {
         display: flex;
         gap: .5rem;
@@ -136,5 +139,37 @@ $tablet-min: 600px;
             transform: translate(50%, -50%);
             left: auto;
         }
+    }
+    &__item-add {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center !important;
+        height: 100%;
+        background: #f0f0f0;
+        border: 1px solid #ccc;
+        padding: 1rem;
+        aspect-ratio: var(--aspect-ratio, 1/1);
+        justify-content: center !important;
+    }
+    &__item-remove {
+        position: absolute;
+        top: .25rem;
+        opacity: 0;
+        right: .25rem;
+        z-index: 100;
+        background: #f0f0f0;
+        border: 1px solid #ccc;
+        aspect-ratio: 1/1;
+        width: 1.5rem;
+        min-width: 1.5rem !important;
+        height: 1.5rem;
+        padding: 0 !important;
+        cursor: pointer;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    &__item:hover &__item-remove {
+        opacity: 1;
     }
 }

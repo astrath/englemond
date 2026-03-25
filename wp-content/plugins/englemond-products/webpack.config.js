@@ -5,7 +5,7 @@ module.exports = {
 	devtool: 'source-map',
 	entry: {
 		'englemond-products': './assets/englemond/index.js',
-		// Compile assets to blocks
+		'englemond-album': './assets/album/album.js',
 		'blocks/gallery/editor': './assets/gallery/editor.js',
 		'blocks/gallery/view': './assets/gallery/view.js',
 		'blocks/selection/editor': './assets/selection/editor.js',

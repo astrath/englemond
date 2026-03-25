@@ -398,6 +398,7 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 
 
+
 /**
  * Template component for rendering the selection block
  * Supports grid and carousel modes
@@ -408,7 +409,10 @@ function SelectionTemplate(_ref) {
     selectedProducts = _ref.selectedProducts,
     setAttributes = _ref.setAttributes,
     isSelected = _ref.isSelected,
-    isLoadingProducts = _ref.isLoadingProducts;
+    isLoadingProducts = _ref.isLoadingProducts,
+    isEditable = _ref.isEditable,
+    onAdd = _ref.onAdd,
+    onRemoveProduct = _ref.onRemoveProduct;
   var view = attributes.view,
     source = attributes.source,
     title = attributes.title;
@@ -427,6 +431,11 @@ function SelectionTemplate(_ref) {
     }
   });
   blockProps.className += ' has-align-' + viewAlign;
+  if (!((attributes === null || attributes === void 0 ? void 0 : attributes.className) || '').split(' ').some(function (c) {
+    return c.startsWith('is-style-');
+  })) {
+    blockProps.className += ' is-style-default';
+  }
   if (viewType === 'grid') {
     return /*#__PURE__*/React.createElement("div", blockProps, selectedProducts.map(function (product) {
       return /*#__PURE__*/React.createElement(Product, {
@@ -436,8 +445,15 @@ function SelectionTemplate(_ref) {
   }
   var activeTitle = ((_selectedProducts$act = selectedProducts[activeIndex]) === null || _selectedProducts$act === void 0 || (_selectedProducts$act = _selectedProducts$act.title) === null || _selectedProducts$act === void 0 ? void 0 : _selectedProducts$act.rendered) || ((_selectedProducts$act2 = selectedProducts[activeIndex]) === null || _selectedProducts$act2 === void 0 ? void 0 : _selectedProducts$act2.title) || 'Selectiio Vide';
   var carouselStyle = {
-    width: selectedProducts.length * 100 / Math.max(columnsCount, 1) + '%',
+    width: (selectedProducts.length + (isEditable ? 1 : 0)) * 100 / Math.max(columnsCount, 1) + '%',
     marginLeft: activeIndex * -100 / Math.max(columnsCount, 1) + '%'
+  };
+  var onRemove = function onRemove(productId) {
+    if (isEditable) {
+      return function () {
+        return onRemoveProduct(productId);
+      };
+    }
   };
   return /*#__PURE__*/React.createElement("div", blockProps, view.showHeader ? /*#__PURE__*/React.createElement("div", {
     className: "wp-block-englemond-selection__header"
@@ -466,17 +482,23 @@ function SelectionTemplate(_ref) {
   }) : /*#__PURE__*/React.createElement("p", {
     className: "wp-block-englemond-selection__description"
   }, attributes.description)) : null, /*#__PURE__*/React.createElement("div", {
-    className: "wp-block-englemond-selection__carousel " + (viewAlign === 'left' ? 'align-left' : '')
+    className: "wp-block-englemond-selection__carousel "
   }, /*#__PURE__*/React.createElement("div", {
     className: "wp-block-englemond-selection__carousel-viewport"
-  }, /*#__PURE__*/React.createElement("div", {
+  }, !isEditable && selectedProducts.length === 0 ? /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Placeholder, {
+    className: "wp-block-englemond-selection__carousel-viewport"
+  }, source.term ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('The selected category is empty', 'englemond-products') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No category selected', 'englemond-products')) : /*#__PURE__*/React.createElement("div", {
     className: "wp-block-englemond-selection__carousel-inner",
     style: carouselStyle
   }, selectedProducts.map(function (product) {
     return /*#__PURE__*/React.createElement(Product, {
       product: product,
-      className: "wp-block-englemond-selection__carousel-item"
+      className: "wp-block-englemond-selection__carousel-item",
+      onRemove: onRemove(product.id)
     });
+  }), /*#__PURE__*/React.createElement(AddProductButton, {
+    isEditable: isEditable,
+    onClick: onAdd
   }))), /*#__PURE__*/React.createElement("div", {
     className: "wp-block-englemond-selection__carousel-controls"
   }, /*#__PURE__*/React.createElement("button", {
@@ -497,7 +519,8 @@ function SelectionTemplate(_ref) {
 }
 var Product = function Product(_ref2) {
   var product = _ref2.product,
-    className = _ref2.className;
+    className = _ref2.className,
+    onRemove = _ref2.onRemove;
   return /*#__PURE__*/React.createElement("div", {
     className: "wp-block-englemond-selection__item " + className
   }, /*#__PURE__*/React.createElement("span", {
@@ -507,7 +530,24 @@ var Product = function Product(_ref2) {
     alt: product.title
   }), /*#__PURE__*/React.createElement("h5", {
     className: "wp-block-englemond-selection__item-title"
-  }, product.title)));
+  }, product.title)), onRemove && /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    icon: "minus",
+    className: "wp-block-englemond-selection__item-remove",
+    onClick: onRemove
+  }));
+};
+var AddProductButton = function AddProductButton(_ref3) {
+  var isEditable = _ref3.isEditable,
+    onClick = _ref3.onClick;
+  if (!isEditable) {
+    return null;
+  }
+  return /*#__PURE__*/React.createElement(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    icon: "plus",
+    variant: "secondary",
+    className: "wp-block-englemond-selection__item-add",
+    onClick: onClick
+  }, "Ajoutter");
 };
 var stripTags = function stripTags(html) {
   return html;
@@ -975,6 +1015,11 @@ var getProducts = /*#__PURE__*/function () {
         });
       }
     }))), /*#__PURE__*/React.createElement(_templates__WEBPACK_IMPORTED_MODULE_6__.SelectionTemplate, {
+      isEditable: source.type != 'term',
+      onAdd: source.type != 'term' ? function () {
+        return setModalOpen(true);
+      } : undefined,
+      onRemoveProduct: onRemoveProduct,
       isLoadingProducts: isLoadingProducts,
       setAttributes: setAttributes,
       attributes: attributes,

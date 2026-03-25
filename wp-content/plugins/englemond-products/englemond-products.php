@@ -20,6 +20,7 @@ require_once __DIR__ . '/includes/settings.php';
 require_once __DIR__ . '/includes/mailer.php';
 require_once __DIR__ . '/ajax.php';
 require_once __DIR__ . '/includes/contact.php';
+require_once __DIR__ . '/includes/model-album.php';
 
 add_action('plugins_loaded', 'englemond_products_load_textdomain');
 function englemond_products_load_textdomain() {

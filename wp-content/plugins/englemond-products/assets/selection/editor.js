@@ -230,6 +230,9 @@ registerBlockType('englemond/selection', {
 				</InspectorControls>
 
 				<SelectionTemplate
+				isEditable={source.type != 'term'}
+				onAdd={source.type != 'term' ? ()=>setModalOpen(true) : undefined}
+				onRemoveProduct={onRemoveProduct}
 				isLoadingProducts={isLoadingProducts}
 				setAttributes={setAttributes}
 					attributes={attributes}

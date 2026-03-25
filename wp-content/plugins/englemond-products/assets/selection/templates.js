@@ -1,15 +1,16 @@
 /**
  * WordPress dependencies
  */
+
 import { __ } from '@wordpress/i18n';
 import { useState } from '@wordpress/element';
 import { useBlockProps, RichText } from '@wordpress/block-editor';
-import { Spinner } from '@wordpress/components';
+import { Spinner, Button, Placeholder } from '@wordpress/components';
 /**
  * Template component for rendering the selection block
  * Supports grid and carousel modes
  */
-export function SelectionTemplate({ attributes, selectedProducts, setAttributes, isSelected, isLoadingProducts }) {
+export function SelectionTemplate({ attributes, selectedProducts, setAttributes, isSelected, isLoadingProducts, isEditable, onAdd, onRemoveProduct }) {
 	const { view, source, title } = attributes;
 	const viewType = view?.type || 'carousel';
 	const sourceType = source?.type || '';
@@ -23,6 +24,9 @@ export function SelectionTemplate({ attributes, selectedProducts, setAttributes,
 		},
 	});
 	blockProps.className += ' has-align-' + viewAlign;
+	if (!(attributes?.className || '').split(' ').some(c=>c.startsWith('is-style-'))){
+		blockProps.className += ' is-style-default';
+	}
 	if (viewType === 'grid') {
 		return (
 				<div {...blockProps}>
@@ -34,8 +38,14 @@ export function SelectionTemplate({ attributes, selectedProducts, setAttributes,
 	}
 	const activeTitle = selectedProducts[activeIndex]?.title?.rendered || selectedProducts[activeIndex]?.title || 'Selectiio Vide';
 	const carouselStyle = {
-		width: (selectedProducts.length * 100 / Math.max(columnsCount, 1)) + '%',
+		width: ((selectedProducts.length + (isEditable ? 1 : 0)) * 100 / Math.max(columnsCount, 1)) + '%',
 		marginLeft: (activeIndex * (-100 )/ Math.max(columnsCount, 1)) + '%',
+	
+	}
+	const onRemove = (productId) => {
+		if (isEditable) {
+			return () => onRemoveProduct(productId);
+		}
 	}
 	return (
 		<div {...blockProps}>
@@ -43,13 +53,17 @@ export function SelectionTemplate({ attributes, selectedProducts, setAttributes,
 			{isSelected?<RichText className="wp-block-englemond-selection__title" placeholder={__('Enter title', 'englemond-products')} value={attributes.title} onChange={title=>setAttributes({ title : stripTags(title) })} tagName="h3" />:<h3 className="wp-block-englemond-selection__title">{attributes.title}</h3>}
 			{isSelected?<RichText className="wp-block-englemond-selection__description" placeholder={__('Enter description', 'englemond-products')} value={attributes.description} onChange={description=>setAttributes({ description : stripTags(description) })} tagName="p" />:<p className="wp-block-englemond-selection__description">{attributes.description}</p>}
 			</div>:null}
-			<div className={"wp-block-englemond-selection__carousel " + (viewAlign === 'left' ? 'align-left' : '')}>
+			<div className={"wp-block-englemond-selection__carousel " }>
 				<div className="wp-block-englemond-selection__carousel-viewport">
-					<div className="wp-block-englemond-selection__carousel-inner" style={carouselStyle}>
+					
+					{!isEditable && selectedProducts.length === 0 ? <Placeholder className="wp-block-englemond-selection__carousel-viewport" >
+						{source.term ? __('The selected category is empty', 'englemond-products') : __('No category selected', 'englemond-products')}
+						</Placeholder>:<div className="wp-block-englemond-selection__carousel-inner" style={carouselStyle}>
 						{selectedProducts.map((product) => (
-							<Product product={product} className="wp-block-englemond-selection__carousel-item" />
+							<Product product={product} className="wp-block-englemond-selection__carousel-item" onRemove={onRemove(product.id)} />
 						))}
-					</div>
+						{<AddProductButton isEditable={isEditable} onClick={onAdd} />}
+					</div>}
 					
 				</div>
 				<div className="wp-block-englemond-selection__carousel-controls">
@@ -64,15 +78,27 @@ export function SelectionTemplate({ attributes, selectedProducts, setAttributes,
 		</div>
 	);
 }
-const Product = ({ product , className }) => {
+const Product = ({ product , className, onRemove }) => {
 	return (
 		<div className={"wp-block-englemond-selection__item " + className}>
+			
 			<span className="wp-block-englemond-selection__item-link">
 
 			<img src={product.thumbnail} alt={product.title} />
 			<h5 className="wp-block-englemond-selection__item-title">{product.title}</h5>
 			</span>
-		</div>
+			{onRemove && <Button icon="minus" className="wp-block-englemond-selection__item-remove" onClick={onRemove}></Button>}
+			</div>
+	);
+};
+const AddProductButton = ({ isEditable, onClick }) => {
+	if (!isEditable) {
+		return null;
+	}
+	return (
+		<Button icon="plus" variant="secondary" className="wp-block-englemond-selection__item-add" onClick={onClick}>
+		Ajoutter
+		</Button>
 	);
 };
 
