@@ -46,8 +46,8 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"templateLock":"all","lock":{"move":true,"remove":true},"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:group {"lock":{"move":false,"remove":false},"style":{"border":{"bottom":{"width":"1px"},"top":{"width":"1px"}},"dimensions":{"minHeight":"4rem"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
-<div class="wp-block-group" style="border-top-width:1px;border-bottom-width:1px;min-height:4rem"><!-- wp:paragraph {"align":"center","fontSize":"medium"} -->
+<div class="wp-block-group"><!-- wp:group {"className":"englemond-product-property","lock":{"move":false,"remove":false},"style":{"border":{"bottom":{"width":"1px"},"top":{"width":"1px"}},"dimensions":{"minHeight":"4rem"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
+<div class="wp-block-group englemond-product-property" style="border-top-width:1px;border-bottom-width:1px;min-height:4rem"><!-- wp:paragraph {"align":"center","fontSize":"medium"} -->
 <p class="has-text-align-center has-medium-font-size"><strong>Grammage</strong></p>
 <!-- /wp:paragraph -->
 
@@ -56,8 +56,8 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"style":{"border":{"bottom":{"width":"1px"}},"dimensions":{"minHeight":"4rem"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
-<div class="wp-block-group" style="border-bottom-width:1px;min-height:4rem"><!-- wp:paragraph {"align":"center","fontSize":"medium"} -->
+<!-- wp:group {"className":"englemond-product-property","style":{"border":{"bottom":{"width":"1px"}},"dimensions":{"minHeight":"4rem"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
+<div class="wp-block-group englemond-product-property" style="border-bottom-width:1px;min-height:4rem"><!-- wp:paragraph {"align":"center","fontSize":"medium"} -->
 <p class="has-text-align-center has-medium-font-size"><strong>Caratage</strong></p>
 <!-- /wp:paragraph -->
 
@@ -66,8 +66,8 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"style":{"border":{"bottom":{"width":"1px"}},"dimensions":{"minHeight":"4rem"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
-<div class="wp-block-group" style="border-bottom-width:1px;min-height:4rem"><!-- wp:paragraph {"align":"center","lock":{"move":true,"remove":true},"fontSize":"medium"} -->
+<!-- wp:group {"className":"englemond-product-property","style":{"border":{"bottom":{"width":"1px"}},"dimensions":{"minHeight":"4rem"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
+<div class="wp-block-group englemond-product-property" style="border-bottom-width:1px;min-height:4rem"><!-- wp:paragraph {"align":"center","lock":{"move":true,"remove":true},"fontSize":"medium"} -->
 <p class="has-text-align-center has-medium-font-size"><strong>cote</strong></p>
 <!-- /wp:paragraph -->
 
